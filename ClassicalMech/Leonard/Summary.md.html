@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html data-markdown-preview-plus-context="html-export">
+  <head>
+    <meta charset="utf-8" />
+    <title>Summary.md</title><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    jax: ["input/TeX","output/HTML-CSS"],
+    extensions: ["[a11y]/accessibility-menu.js"],
+    'HTML-CSS': {
+      availableFonts: [],
+      webFont: 'TeX',
+      undefinedFamily: "serif",
+      mtextFontInherit: false,
+    },
+    TeX: {
+  "Macros": {
+    "bm": [
+      "{\\boldsymbol #1 }",
+      1
+    ],
+    "bra": [
+      "{\\langle #1 |}",
+      1
+    ],
+    "degree": "{^\\circ}",
+    "flo": [
+      "{\\overset {\\cdot} {#1}}",
+      1
+    ],
+    "indent": "{\\ \\ \\ \\}",
+    "ket": [
+      "{|#1\\rangle}",
+      1
+    ],
+    "td": "{\\text{d}}",
+    "ti": "{\\text{i}}"
+  },
+  "equationNumbers": {
+    "autoNumber": "AMS",
+    "useLabelIds": false
+  },
+  "extensions": [
+    "AMSmath.js",
+    "AMSsymbols.js",
+    "noErrors.js",
+    "noUndefined.js",
+    "AMSmath.js"
+  ]
+},
+    showMathMenu: true
+  });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js"></script>
+    <style>.emoji {
+  max-width: 1em !important;
+}
+del {
+  text-decoration: none;
+  position: relative;
+}
+del::after {
+  border-bottom: 1px solid black;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+ul.contains-task-list li.task-list-item {
+  position: relative;
+  list-style-type: none;
+}
+ul.contains-task-list li.task-list-item input.task-list-item-checkbox {
+  position: absolute;
+  transform: translateX(-100%);
+  width: 30px;
+}
+span.critic.comment {
+  position: relative;
+}
+span.critic.comment::before {
+  content: '\1f4ac';
+  position: initial;
+}
+span.critic.comment > span {
+  display: none;
+}
+span.critic.comment:hover > span {
+  display: initial;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 1px solid;
+  border-radius: 5px;
+  max-height: 4em;
+  overflow: auto;
+}
+span.critic.comment:focus > span {
+  display: initial;
+  text-decoration: underline;
+  position: initial;
+  top: auto;
+  left: auto;
+  border: initial;
+  border-radius: initial;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: transparent;
+}
+
+body {
+  overflow: initial !important;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  line-height: 1.6;
+  word-wrap: break-word;
+  padding: 30px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+}
+body > *:first-child {
+  margin-top: 0 !important;
+}
+body > *:last-child {
+  margin-bottom: 0 !important;
+}
+body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+body .absent {
+  color: #c00;
+}
+body .anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+body .anchor:focus {
+  outline: none;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+body h1 .octicon-link,
+body h2 .octicon-link,
+body h3 .octicon-link,
+body h4 .octicon-link,
+body h5 .octicon-link,
+body h6 .octicon-link {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+body h1:hover .anchor,
+body h2:hover .anchor,
+body h3:hover .anchor,
+body h4:hover .anchor,
+body h5:hover .anchor,
+body h6:hover .anchor {
+  padding-left: 8px;
+  margin-left: -30px;
+  text-decoration: none;
+}
+body h1:hover .anchor .octicon-link,
+body h2:hover .anchor .octicon-link,
+body h3:hover .anchor .octicon-link,
+body h4:hover .anchor .octicon-link,
+body h5:hover .anchor .octicon-link,
+body h6:hover .anchor .octicon-link {
+  display: inline-block;
+}
+body h1 tt,
+body h2 tt,
+body h3 tt,
+body h4 tt,
+body h5 tt,
+body h6 tt,
+body h1 code,
+body h2 code,
+body h3 code,
+body h4 code,
+body h5 code,
+body h6 code {
+  font-size: inherit;
+}
+body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+body h1 .anchor {
+  line-height: 1;
+}
+body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+body h2 .anchor {
+  line-height: 1;
+}
+body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+body h3 .anchor {
+  line-height: 1.2;
+}
+body h4 {
+  font-size: 1.25em;
+}
+body h4 .anchor {
+  line-height: 1.2;
+}
+body h5 {
+  font-size: 1em;
+}
+body h5 .anchor {
+  line-height: 1.1;
+}
+body h6 {
+  font-size: 1em;
+  color: #777;
+}
+body h6 .anchor {
+  line-height: 1.1;
+}
+body p,
+body blockquote,
+body ul,
+body ol,
+body dl,
+body table,
+body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+body ul,
+body ol {
+  padding-left: 2em;
+}
+body ul.no-list,
+body ol.no-list {
+  padding: 0;
+  list-style-type: none;
+}
+body ul ul,
+body ul ol,
+body ol ol,
+body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+body li > p {
+  margin-top: 16px;
+}
+body dl {
+  padding: 0;
+}
+body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+body blockquote > :first-child {
+  margin-top: 0;
+}
+body blockquote > :last-child {
+  margin-bottom: 0;
+}
+body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+body table th {
+  font-weight: bold;
+}
+body table th,
+body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body .emoji {
+  max-width: none;
+}
+body span.frame {
+  display: block;
+  overflow: hidden;
+}
+body span.frame > span {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 7px;
+  margin: 13px 0 0;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+body span.frame span img {
+  display: block;
+  float: left;
+}
+body span.frame span span {
+  display: block;
+  padding: 5px 0 0;
+  clear: both;
+  color: #333;
+}
+body span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+body span.align-center > span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: center;
+}
+body span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+body span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+body span.align-right > span {
+  display: block;
+  margin: 13px 0 0;
+  overflow: hidden;
+  text-align: right;
+}
+body span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+body span.float-left {
+  display: block;
+  float: left;
+  margin-right: 13px;
+  overflow: hidden;
+}
+body span.float-left span {
+  margin: 13px 0 0;
+}
+body span.float-right {
+  display: block;
+  float: right;
+  margin-left: 13px;
+  overflow: hidden;
+}
+body span.float-right > span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: right;
+}
+body code,
+body tt {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+}
+body code:before,
+body tt:before,
+body code:after,
+body tt:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+body code br,
+body tt br {
+  display: none;
+}
+body del code {
+  text-decoration: inherit;
+}
+body pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+body .highlight {
+  margin-bottom: 16px;
+}
+body .highlight pre,
+body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+body pre {
+  word-wrap: normal;
+}
+body pre code,
+body pre tt {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+body pre code:before,
+body pre tt:before,
+body pre code:after,
+body pre tt:after {
+  content: normal;
+}
+body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+span.critic.comment > span {
+  background-color: #fff;
+}
+a {
+  color: #337ab7;
+}
+
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+.line-number.bracket-matcher.bracket-matcher {
+  color: #abb2bf;
+  background-color: #3a3f4b;
+}
+
+#status-bar-jumpy {
+  color: #6494ed;
+}
+#status-bar-jumpy.no-match,
+#status-bar-jumpy.no-match .status {
+  color: #e2c08d;
+}
+.jumpy-label {
+  color: #282c34;
+  background: #9da5b4;
+  position: absolute;
+  vertical-align: bottom;
+  transform: translate(0, -100%);
+  padding: .15em;
+  border-radius: 3px;
+  font-family: system-ui;
+}
+.jumpy-label.irrelevant {
+  visibility: hidden;
+}
+.jumpy-label.high-contrast {
+  background-color: #2ba143;
+}
+.jumpy-label.tab-label {
+  margin-left: 10px;
+}
+.beacon {
+  display: block;
+  position: absolute;
+  border-radius: 1px;
+  width: 2px;
+  height: 2px;
+  z-index: -1;
+  -webkit-animation: ripple .085s;
+  content: '';
+  top: -6px;
+}
+.beacon.tab-beacon {
+  left: 18px;
+  top: -15px;
+}
+@-webkit-keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 transparent,
+                   0 0 0 0 transparent,
+                   0 0 0 0 transparent,
+                   0 0 0 0 transparent;
+  }
+  5% {
+    box-shadow: 0 0 0 0 #d13b2e, 0 0 0 0 rgba(255, 255, 255, 0.5), 0 0 0 0 #d13b2e, 0 0 0 0 rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 4px 24px #d13b2e, 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
+  }
+}
+
+.jumpy-label {
+  color: #333;
+  background-color: #fff;
+}
+.jumpy-label.high-contrast {
+  color: #333;
+  background-color: #17ca65;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .find-result .region.region.region,
+pre.editor-colors .current-result .region.region.region {
+  border-radius: 2px;
+  background-color: rgba(82, 139, 255, 0.24);
+  transition: border-color 0.4s;
+}
+pre.editor-colors .find-result .region.region.region {
+  border: 2px solid transparent;
+}
+pre.editor-colors .current-result .region.region.region {
+  border: 2px solid #528bff;
+  transition-duration: .1s;
+}
+pre.editor-colors .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #3a3f4b;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+pre.editor-colors .fold-marker:after {
+  color: #abb2bf;
+}
+.syntax--comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.syntax--comment .syntax--markup.syntax--link {
+  color: #5c6370;
+}
+.syntax--entity.syntax--name.syntax--type {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--other.syntax--inherited-class {
+  color: #e5c07b;
+}
+.syntax--keyword {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--control {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--keyword.syntax--other.syntax--special-method {
+  color: #61afef;
+}
+.syntax--keyword.syntax--other.syntax--unit {
+  color: #d19a66;
+}
+.syntax--storage {
+  color: #c678dd;
+}
+.syntax--storage.syntax--type.syntax--annotation,
+.syntax--storage.syntax--type.syntax--primitive {
+  color: #c678dd;
+}
+.syntax--storage.syntax--modifier.syntax--package,
+.syntax--storage.syntax--modifier.syntax--import {
+  color: #abb2bf;
+}
+.syntax--constant {
+  color: #d19a66;
+}
+.syntax--constant.syntax--variable {
+  color: #d19a66;
+}
+.syntax--constant.syntax--character.syntax--escape {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--numeric {
+  color: #d19a66;
+}
+.syntax--constant.syntax--other.syntax--color {
+  color: #56b6c2;
+}
+.syntax--constant.syntax--other.syntax--symbol {
+  color: #56b6c2;
+}
+.syntax--variable {
+  color: #e06c75;
+}
+.syntax--variable.syntax--interpolation {
+  color: #be5046;
+}
+.syntax--variable.syntax--parameter {
+  color: #abb2bf;
+}
+.syntax--string {
+  color: #98c379;
+}
+.syntax--string > .syntax--source,
+.syntax--string .syntax--embedded {
+  color: #abb2bf;
+}
+.syntax--string.syntax--regexp {
+  color: #56b6c2;
+}
+.syntax--string.syntax--regexp .syntax--source.syntax--ruby.syntax--embedded {
+  color: #e5c07b;
+}
+.syntax--string.syntax--other.syntax--link {
+  color: #e06c75;
+}
+.syntax--punctuation.syntax--definition.syntax--comment {
+  color: #5c6370;
+}
+.syntax--punctuation.syntax--definition.syntax--method-parameters,
+.syntax--punctuation.syntax--definition.syntax--function-parameters,
+.syntax--punctuation.syntax--definition.syntax--parameters,
+.syntax--punctuation.syntax--definition.syntax--separator,
+.syntax--punctuation.syntax--definition.syntax--seperator,
+.syntax--punctuation.syntax--definition.syntax--array {
+  color: #abb2bf;
+}
+.syntax--punctuation.syntax--definition.syntax--heading,
+.syntax--punctuation.syntax--definition.syntax--identity {
+  color: #61afef;
+}
+.syntax--punctuation.syntax--definition.syntax--bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.syntax--punctuation.syntax--definition.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--punctuation.syntax--section.syntax--embedded {
+  color: #be5046;
+}
+.syntax--punctuation.syntax--section.syntax--method,
+.syntax--punctuation.syntax--section.syntax--class,
+.syntax--punctuation.syntax--section.syntax--inner-class {
+  color: #abb2bf;
+}
+.syntax--support.syntax--class {
+  color: #e5c07b;
+}
+.syntax--support.syntax--type {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function {
+  color: #56b6c2;
+}
+.syntax--support.syntax--function.syntax--any-method {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--function {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--class,
+.syntax--entity.syntax--name.syntax--type.syntax--class {
+  color: #e5c07b;
+}
+.syntax--entity.syntax--name.syntax--section {
+  color: #61afef;
+}
+.syntax--entity.syntax--name.syntax--tag {
+  color: #e06c75;
+}
+.syntax--entity.syntax--other.syntax--attribute-name {
+  color: #d19a66;
+}
+.syntax--entity.syntax--other.syntax--attribute-name.syntax--id {
+  color: #61afef;
+}
+.syntax--meta.syntax--class {
+  color: #e5c07b;
+}
+.syntax--meta.syntax--class.syntax--body {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--method-call,
+.syntax--meta.syntax--method {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--definition.syntax--variable {
+  color: #e06c75;
+}
+.syntax--meta.syntax--link {
+  color: #d19a66;
+}
+.syntax--meta.syntax--require {
+  color: #61afef;
+}
+.syntax--meta.syntax--selector {
+  color: #c678dd;
+}
+.syntax--meta.syntax--separator {
+  color: #abb2bf;
+}
+.syntax--meta.syntax--tag {
+  color: #abb2bf;
+}
+.syntax--underline {
+  text-decoration: underline;
+}
+.syntax--none {
+  color: #abb2bf;
+}
+.syntax--invalid.syntax--deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.syntax--invalid.syntax--illegal {
+  color: white !important;
+  background-color: #e05252 !important;
+}
+.syntax--markup.syntax--bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.syntax--markup.syntax--changed {
+  color: #c678dd;
+}
+.syntax--markup.syntax--deleted {
+  color: #e06c75;
+}
+.syntax--markup.syntax--italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.syntax--markup.syntax--heading {
+  color: #e06c75;
+}
+.syntax--markup.syntax--heading .syntax--punctuation.syntax--definition.syntax--heading {
+  color: #61afef;
+}
+.syntax--markup.syntax--link {
+  color: #56b6c2;
+}
+.syntax--markup.syntax--inserted {
+  color: #98c379;
+}
+.syntax--markup.syntax--quote {
+  color: #d19a66;
+}
+.syntax--markup.syntax--raw {
+  color: #98c379;
+}
+.syntax--source.syntax--c .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--cpp .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--cs .syntax--keyword.syntax--operator {
+  color: #c678dd;
+}
+.syntax--source.syntax--css .syntax--property-name,
+.syntax--source.syntax--css .syntax--property-value {
+  color: #828997;
+}
+.syntax--source.syntax--css .syntax--property-name.syntax--support,
+.syntax--source.syntax--css .syntax--property-value.syntax--support {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--source.syntax--embedded.syntax--source {
+  color: #abb2bf;
+}
+.syntax--source.syntax--elixir .syntax--constant.syntax--language,
+.syntax--source.syntax--elixir .syntax--constant.syntax--numeric,
+.syntax--source.syntax--elixir .syntax--constant.syntax--definition {
+  color: #61afef;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--definition,
+.syntax--source.syntax--elixir .syntax--variable.syntax--anonymous {
+  color: #c678dd;
+}
+.syntax--source.syntax--elixir .syntax--parameter.syntax--variable.syntax--function {
+  color: #d19a66;
+  font-style: italic;
+}
+.syntax--source.syntax--elixir .syntax--quoted {
+  color: #98c379;
+}
+.syntax--source.syntax--elixir .syntax--keyword.syntax--special-method,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--section,
+.syntax--source.syntax--elixir .syntax--embedded.syntax--source.syntax--empty {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--readwrite.syntax--module .syntax--punctuation {
+  color: #e06c75;
+}
+.syntax--source.syntax--elixir .syntax--regexp.syntax--section,
+.syntax--source.syntax--elixir .syntax--regexp.syntax--string {
+  color: #be5046;
+}
+.syntax--source.syntax--elixir .syntax--separator,
+.syntax--source.syntax--elixir .syntax--keyword.syntax--operator {
+  color: #d19a66;
+}
+.syntax--source.syntax--elixir .syntax--variable.syntax--constant {
+  color: #e5c07b;
+}
+.syntax--source.syntax--elixir .syntax--array,
+.syntax--source.syntax--elixir .syntax--scope,
+.syntax--source.syntax--elixir .syntax--section {
+  color: #828997;
+}
+.syntax--source.syntax--gfm .syntax--markup {
+  -webkit-font-smoothing: auto;
+}
+.syntax--source.syntax--gfm .syntax--link .syntax--entity {
+  color: #61afef;
+}
+.syntax--source.syntax--go .syntax--storage.syntax--type.syntax--string {
+  color: #c678dd;
+}
+.syntax--source.syntax--ini .syntax--keyword.syntax--other.syntax--definition.syntax--ini {
+  color: #e06c75;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--modifier.syntax--import {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--storage.syntax--type {
+  color: #e5c07b;
+}
+.syntax--source.syntax--java .syntax--keyword.syntax--operator.syntax--instanceof {
+  color: #c678dd;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair {
+  color: #e06c75;
+}
+.syntax--source.syntax--java-properties .syntax--meta.syntax--key-pair > .syntax--punctuation {
+  color: #abb2bf;
+}
+.syntax--source.syntax--js .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--delete,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--in,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--of,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--instanceof,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--new,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--typeof,
+.syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--void {
+  color: #c678dd;
+}
+.syntax--source.syntax--ts .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--flow .syntax--keyword.syntax--operator {
+  color: #56b6c2;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation.syntax--string {
+  color: #e06c75;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--value.syntax--json > .syntax--string.syntax--quoted.syntax--json > .syntax--punctuation {
+  color: #98c379;
+}
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--constant.syntax--language.syntax--json,
+.syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--array.syntax--json > .syntax--constant.syntax--language.syntax--json {
+  color: #56b6c2;
+}
+.syntax--ng.syntax--interpolation {
+  color: #e06c75;
+}
+.syntax--ng.syntax--interpolation.syntax--begin,
+.syntax--ng.syntax--interpolation.syntax--end {
+  color: #61afef;
+}
+.syntax--ng.syntax--interpolation .syntax--function {
+  color: #e06c75;
+}
+.syntax--ng.syntax--interpolation .syntax--function.syntax--begin,
+.syntax--ng.syntax--interpolation .syntax--function.syntax--end {
+  color: #61afef;
+}
+.syntax--ng.syntax--interpolation .syntax--bool {
+  color: #d19a66;
+}
+.syntax--ng.syntax--interpolation .syntax--bracket {
+  color: #abb2bf;
+}
+.syntax--ng.syntax--pipe,
+.syntax--ng.syntax--operator {
+  color: #abb2bf;
+}
+.syntax--ng.syntax--tag {
+  color: #56b6c2;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--attribute-name {
+  color: #e5c07b;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--string {
+  color: #c678dd;
+}
+.syntax--ng.syntax--attribute-with-value .syntax--string.syntax--begin,
+.syntax--ng.syntax--attribute-with-value .syntax--string.syntax--end {
+  color: #abb2bf;
+}
+.syntax--source.syntax--ruby .syntax--constant.syntax--other.syntax--symbol > .syntax--punctuation {
+  color: inherit;
+}
+.syntax--source.syntax--php .syntax--class.syntax--bracket {
+  color: #abb2bf;
+}
+.syntax--source.syntax--python .syntax--keyword.syntax--operator.syntax--logical.syntax--python {
+  color: #c678dd;
+}
+.syntax--source.syntax--python .syntax--variable.syntax--parameter {
+  color: #d19a66;
+}
+
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed and saved.
+ *
+ * Add your own CSS or Less to fully customize Atom.
+ * If you are unfamiliar with Less, you can read more about it here:
+ * http://lesscss.org
+ */
+/*
+ * Examples
+ * (To see them, uncomment and save)
+ */
+</style>
+
+  </head>
+  <body>
+    <h1>Summary for Lagrange Mechanics</h1>
+<h2>Generalized Coordinates</h2>
+<p>Any system can be described by <strong>at least</strong> <span class="math inline-math"><script type="math/tex">f</script></span> real numbers, they are <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">generalized coordinates</code> .</p>
+<ol>
+<li>
+<p><strong>Free particle in 3D space</strong></p>
+<p>Such the particle can be described by <span class="math inline-math"><script type="math/tex">3</script></span> coordinates in Cartesian system:</p>
+<span class="math display-math"><script type="math/tex; mode=display">q = (x^1, x^2, x^3) \sim x^1 \bm{e}_1 + x^2 \bm{e}_2 + x^3 \bm{e}_3
+</script></span>
+</li>
+<li>
+<p><strong>Particle constraint on a sphere</strong></p>
+<p>Same as 1, Cartesian coordinates can describe the particle : <span class="math inline-math"><script type="math/tex">(x^1,x^2,x^3)</script></span> , but there is a constraint:</p>
+<span class="math display-math"><script type="math/tex; mode=display">(x^1)^2 + (x^2)^2 + (x^3)^2 = 1
+</script></span>
+<p>So <span class="math inline-math"><script type="math/tex">f=2</script></span> , one can use spherical coordinates:</p>
+<span class="math display-math"><script type="math/tex; mode=display">q = (\theta, \phi)
+</script></span>
+<p>Where</p>
+<span class="math display-math"><script type="math/tex; mode=display">x^1 = \sin\theta \cos \phi \ ; \ x^2 = \sin\theta \sin \phi \ ; \ x^3 = \cos\theta
+</script></span>
+</li>
+<li>
+<p><strong>Particles on a generic constraint</strong></p>
+<p>Consider there are <span class="math inline-math"><script type="math/tex">3N</script></span> Cartesian coordinates to describe <span class="math inline-math"><script type="math/tex">N</script></span> particles. And there are <span class="math inline-math"><script type="math/tex">s</script></span> (ideal) constraint equations:</p>
+<span class="math display-math"><script type="math/tex; mode=display">f^i (q^1,\cdots,q^{3N}) = 0 \ ; \ i=1,\cdots,s
+</script></span>
+<p>With the <a href="https://en.wikipedia.org/wiki/Implicit_function_theorem">theorem for implicit function</a>, at any point <span class="math inline-math"><script type="math/tex">q_0</script></span>, if the Jacobian (a <span class="math inline-math"><script type="math/tex">s\times 3N</script></span> matrix):</p>
+<span class="math display-math"><script type="math/tex; mode=display">J_{ki} = \partial_k f^i (q_0)
+</script></span>
+<p>is <span class="math inline-math"><script type="math/tex">r \leq \min(s,3N)</script></span> rank, and near the <span class="math inline-math"><script type="math/tex">q_0</script></span>, one can always find <span class="math inline-math"><script type="math/tex">3N-r</script></span> parameters so that <span class="math inline-math"><script type="math/tex">q^j = q^{j}(z^1,\cdots, z^{3N-r}) \ ; \ j=1,\cdots, 3N</script></span> is the function defined by these <span class="math inline-math"><script type="math/tex">s</script></span> constraints.</p>
+</li>
+<li>
+<p><strong>Rigid body</strong></p>
+<p>Free rigid body has <span class="math inline-math"><script type="math/tex">6</script></span> degrees of freedom (<span class="math inline-math"><script type="math/tex">f=6</script></span>). One can always specify a rigid body by its position and its orientation, where position is 3-Cartesian coordinates <span class="math inline-math"><script type="math/tex">\bm{x} = (x^1,x^2,x^3)</script></span> of some fixed (on the rigid body) point (like mass center), and the orientation can be described by a orthogonal matrix <span class="math inline-math"><script type="math/tex">\bm{A}</script></span>. Then, at each time <span class="math inline-math"><script type="math/tex">t</script></span> , the point(mass point) at <span class="math inline-math"><script type="math/tex">\bm{z}(0)</script></span> initially will be at:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{z}(t) - \bm{x}(t) = \bm{A}(t) \Big(\bm{z}(0) - \bm{x}(0)\Big)
+</script></span>
+<p>Note that 3D orthogonal matrix(SO(3)) can be uniquely described by three parameters, so the rigid body has <span class="math inline-math"><script type="math/tex">f=6</script></span>.</p>
+</li>
+</ol>
+<h2>Euler-Lagrange Equation</h2>
+<p>Any <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">ideal</code> dynamical system obeys the equation(s) of:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td } {\td t}\frac {\partial L} {\partial \flo{q}^r} - \frac {\partial L} {\partial q^r} = 0 \ ; \ r=1,\cdots,f
+</script></span>
+<p>Where <span class="math inline-math"><script type="math/tex">f</script></span> is the number of degrees of freedom. <span class="math inline-math"><script type="math/tex">q^r</script></span> are coordinates to describe the system. <span class="math inline-math"><script type="math/tex">L=L(q,\flo{q},t)</script></span> is called <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">Lagrangian</code> . These equations induce <span class="math inline-math"><script type="math/tex">r</script></span> second order ODEs about <span class="math inline-math"><script type="math/tex">q^r(t)</script></span> .</p>
+<ol>
+<li>
+<p><strong>Single 1D particle in external potential</strong></p>
+<p>Consider the Lagrangian of:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = T - V = \frac 1 2 m \flo{q}^2 - V(q)
+</script></span>
+<p>Then the equation of motion should be:</p>
+<span class="math display-math"><script type="math/tex; mode=display">m \frac {\td^2 q} {\td t^2} + \frac {\td V} {\td q} (q) = 0
+</script></span>
+<p>Which is the Newton’s law of motion.</p>
+</li>
+<li>
+<p><strong>Free particles</strong></p>
+<p>In Cartesian coordinates, kinetic energy of a particle is: <span class="math inline-math"><script type="math/tex">T = \frac 1 2 m \bm{v}^2</script></span> where <span class="math inline-math"><script type="math/tex">\bm{v} = \frac {\td} {\td t} \bm{x}</script></span> . So the Lagrangian of the free particle is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \sum_{i=1}^N \frac 1 2 m_i \bm{v}_i^2 = \sum_{i=1}^N \sum_{r=1}^3 \frac 1 2 m_i (\flo{q}_{i}^r)^2
+</script></span>
+</li>
+<li>
+<p><strong>Particle on a sphere</strong></p>
+<p>In Cartesian coordinates we have <span class="math inline-math"><script type="math/tex">L = \frac 1 2 m \Big((\flo{x}^1)^2+(\flo{x}^2)^2+(\flo{x}^3)^2\Big)</script></span> . Then with the relation <span class="math inline-math"><script type="math/tex">x^1 = \sin\theta \cos \phi \ ; \ x^2 = \sin\theta \sin \phi \ ; \ x^3 = \cos\theta</script></span> one has:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{cases}
+ \flo{x}^1 &= \cos \theta \cos \phi \flo{\theta} - \sin\theta \sin\phi \flo{\phi} \\
+ \flo{x}^2 &= \cos\theta \sin\phi \flo{\theta} + \sin\theta \cos\phi \flo{\phi} \\
+ \flo{x}^3 &= -\sin\theta \flo{\theta}
+\end{cases}</script></span>
+<p>So:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 m \Big(\flo{\theta}^2 + \sin^2\theta \flo{\phi}^2 \Big)
+</script></span>
+</li>
+<li>
+<p><strong>Particle on generic constraints</strong></p>
+<p>The constraint for <span class="math inline-math"><script type="math/tex">N</script></span> particles are:</p>
+<span class="math display-math"><script type="math/tex; mode=display">f^i (q^1,\cdots,q^{3N}) = 0 \ ; \ i=1,\cdots,s
+</script></span>
+<p>The Lagrangian should still be:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 \sum_{i=1}^{3N} m_i (\flo{q}^{i})^2
+</script></span>
+<p>in which <span class="math inline-math"><script type="math/tex">m_{3k+1} = m_{3k+2} = m_{3k+3}</script></span>, they are masses of the same particle. With the constraints, one has:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\partial_l f^i \td q^l = 0 \Rightarrow \flo{q}^l \partial_l f^i = 0 \ ; \ i = 1,\cdots,s
+</script></span>
+<p>If the rank of Jacobian <span class="math inline-math"><script type="math/tex">J_{ij} = \partial_i f^j(q)</script></span> is <span class="math inline-math"><script type="math/tex">r</script></span> , then we can choose the first <span class="math inline-math"><script type="math/tex">3N-r</script></span> <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">generalized velocity</code> <span class="math inline-math"><script type="math/tex">\flo{q}^i \ ; \ i=1,\cdots, 3N-r</script></span> be fixed and solve this linear equation to express the other <span class="math inline-math"><script type="math/tex">r</script></span> velocities with these <span class="math inline-math"><script type="math/tex">3N-r</script></span> velocities:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\flo{q}^k = \sum_{l=1}^{3N-r} C_{kl} \flo{q}^l \ ; \ k=3N-r+1,\cdots,3N
+</script></span>
+<p>and get the Lagrangian as the function of velocity of d.o.f. variables.</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 \sum_{i=1}^{3N-r} m_i (\flo{q}^i)^2 + \frac 1 2 \sum_{i=3N-r+1}^{3N} m_i \Big(\sum_{l=1}^{3N-r} C_{il} \flo{q}^l\Big)^2
+</script></span>
+</li>
+<li>
+<p><strong>Rigid Body</strong></p>
+<p>We have shown that any mass point on the rigid body has the position at time <span class="math inline-math"><script type="math/tex">t</script></span> of the form:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{x_i}(t) = \bm{x}(t) + \bm{A}(t)(\bm{x_i}(0)-\bm{x}(0))
+</script></span>
+<p>Now we assume the reference point <span class="math inline-math"><script type="math/tex">\bm{x}(t)</script></span> is the position of the mass center. The Lagrangian (kinetic energy) is simply:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+L &= \frac 1 2 \sum_i m_i \Big(\frac {\td \bm{x}} {\td t} + \frac {\td \bm{A}} {\td t} (\bm{x_i}(0) - \bm{x}(0))\Big)^2\rightarrow \frac 1 2 \int \td m \Big(\frac {\td \bm{x}} {\td t} + \frac {\td \bm{A}} {\td t} (\bm{x_i} - \bm{x})\Big)^2 \\
+&= \frac 1 2 \int_B \td^3 \bm{z} \ \rho(\bm{z})\Big(\frac {\td \bm{x}} {\td t} + \frac {\td \bm{A}} {\td t} \bm{z}\Big)^2
+\end{aligned}</script></span>
+<p>Where we applied the variable substitution, and region <span class="math inline-math"><script type="math/tex">B</script></span> is the rigid body’s configuration at time <span class="math inline-math"><script type="math/tex">t=0</script></span>, <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">initially the mass center is at the original point</code>, and <span class="math inline-math"><script type="math/tex">\rho(\bm{z})</script></span> is the mass-density at position <span class="math inline-math"><script type="math/tex">\bm{z}</script></span> at rigid body initially. We did not compute the kinetic energy of the mass elements’ rotation, because it should be of the second order of <span class="math inline-math"><script type="math/tex">\td^3 \bm{z} = \td V</script></span>, and will not make any difference to the integral.</p>
+<p>Let us further simplify the expression, note that <span class="math inline-math"><script type="math/tex">\flo{\bm{x}} = \bm{V}_c , \flo{\bm{A}} = \bm{R}</script></span> are independent of <span class="math inline-math"><script type="math/tex">\bm{z}</script></span>:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+L &= \frac 1 2 \int_B \td^3 \bm{z} \ \rho(\bm{z})\Big(\bm{V}_c^2 + \bm{V}_c^T \bm{R}\bm{z} + \bm{z}^T \bm{R}^T \bm{V}_c + \bm{z}^T\bm{R}^T\bm{R}\bm{z}\Big) \\
+&=\frac 1 2 M \bm{V}_c^2 + \frac 1 2 \int_B \td^3 \bm{z} \ \rho(\bm{z}) \bm{z}^T \bm{R}^T \bm{R}\bm{z}
+\end{aligned}</script></span>
+<p>Where we used the fact that <span class="math inline-math"><script type="math/tex">\int_B \td V \rho = M</script></span> and <span class="math inline-math"><script type="math/tex">\int_B \td V \rho \bm{z} = 0</script></span> is the mass of rigid body and that initially the mass center is at the original point.</p>
+<p>Now we consider the time derivative of rotation (orthogonal) matrix <span class="math inline-math"><script type="math/tex">\bm{A}</script></span> , with the property of orthogonality:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{A}(t)\bm{A}^T(t) = \bm{A}^T(t)\bm{A}(t) = \bm{I}
+</script></span>
+<p>we have:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{0} = \bm{R}\bm{A}^T + \bm{A}\bm{R}^T \Rightarrow \bm{R} \bm{A}^T = -(\bm{R} \bm{A}^T)^T
+</script></span>
+<p>That is to say, matrix <span class="math inline-math"><script type="math/tex">\bm{R}\bm{A}^T</script></span> is an anti-symmetric matrix. Let:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{R}\bm{A}^T = \begin{bmatrix}0 & -\omega_z & \omega_y \\ \omega_z & 0 & -\omega_x \\ -\omega_y & \omega_x & 0 \end{bmatrix}
+</script></span>
+<p>One can check that with this form, for arbitrary vector <span class="math inline-math"><script type="math/tex">\bm{u} = (u_x,u_y,u_z)^T</script></span> :</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{R}\bm{A}^T \bm{u} = \begin{bmatrix}-\omega_z u_y + \omega_y u_z \\ \omega_z u_x -\omega_x u_z \\ -\omega_y u_x +\omega_x u_y\end{bmatrix} = \bm{\omega}\times \bm{u}
+</script></span>
+<p>Where <span class="math inline-math"><script type="math/tex">\bm{\omega} = (\omega_x,\omega_y,\omega_z)^T</script></span> .</p>
+<p>With the identity of:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td } {\td t}\Big(\bm{z}(t)-\bm{x}(t)\Big) = \bm{R} (\bm{z}(0)-\bm{x}(0)) = \bm{R}\bm{A}^T (\bm{z}(t)-\bm{x}(t)) = \bm{\omega}\times(\bm{z}(t)-\bm{x}(t))
+</script></span>
+<p>One can see why the vector <span class="math inline-math"><script type="math/tex">\bm{\omega}</script></span> is called <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">angular velocity</code>. Note that the matrix form of <span class="math inline-math"><script type="math/tex">\bm{\omega}</script></span> is actually the generic form of elements in Lie algebra <span class="math inline-math"><script type="math/tex">so(3)</script></span></p>
+<p>So the Lagrangian can be simplified much further:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+L &= \frac 1 2 M \bm{V}_c^2 + \frac 1 2 \int_B \td^3 \bm{z} \ \rho(\bm{z}) (\bm{\omega}\times \bm{z}) \cdot (\bm{\omega}\times \bm{z}) \\
+&=\frac 1 2M \bm{V}_c^2 +\sum_{ij} \omega^i \omega^j \frac 1 2 \int_B \td^3 \bm{z} \ \rho(\bm{z}) \big(\bm{z}^2 \delta_{ij} - z^i z^j\big) \\
+&=\frac 1 2 M\bm{V}_c^2 + \frac 1 2 \bm{\omega}^T \bm{J}\bm{\omega}
+\end{aligned}</script></span>
+<p>Where</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{J}_{ij} =\int_B \td^3 \bm{z} \ \rho(\bm{z}) \big(\bm{z}^2 \delta_{ij} - z^i z^j\big)
+</script></span>
+<p>is <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">Inertial tensor</code> and we used the identity:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+(\bm{a}\times \bm{b})\cdot (\bm{a}\times \bm{b}) &= \delta_{ij}\epsilon_{imn}a^m b^n \epsilon_{jpq}a^pb^q \\
+&=(\delta_{mp}\delta_{nq}-\delta_{mq}\delta_{np})a^m b^n a^p b^q \\
+&=\bm{a}^2 \bm{b}^2 - (\bm{a}\cdot \bm{b})^2 \\
+&=a^i a^j (\bm{b}^2 \delta_{ij} - b_i b_j)
+\end{aligned}</script></span>
+<p>To write the angular velocity <span class="math inline-math"><script type="math/tex">\bm{\omega}</script></span> as time derivative of generalized coordinates one can use the definition of Euler angles.</p>
+</li>
+<li>
+<p><strong>Rigid body with fixed axis</strong></p>
+<p>Some times the rigid body is constraint on a fixed axis, that is, the angular velocity has a fixed orientation: <span class="math inline-math"><script type="math/tex">\bm{\omega}(t) = \omega(t)\bm{n}</script></span> . Then the Lagrangian (kinetic energy of rotation) should be:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 \omega^2 \bm{n}^T \bm{J} \bm{n}\equiv \frac 1 2 \omega^2 J_{\bm{n}}
+</script></span>
+<p>Where:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+J_{\bm{n}} &= \bm{n}^T \bm{J} \bm{n} \\
+&= \int_B \td^3 \bm{z} \ \rho(\bm{z}) (\bm{z^2} \bm{n}^2 - (\bm{z}\cdot \bm{n})^2) \\
+&= \int_B \td^3 \bm{z} \ \rho(\bm{z}) (\bm{z}^2 - (\bm{z}\cdot \bm{n})^2)
+\end{aligned}</script></span>
+<p>Note that <span class="math inline-math"><script type="math/tex">|\bm{n}| = 1</script></span> , and <span class="math inline-math"><script type="math/tex">\bm{z}^2 - (\bm{z}\cdot \bm{n})^2</script></span> is definitely the distance between <span class="math inline-math"><script type="math/tex">\bm{z}</script></span> point and the line along <span class="math inline-math"><script type="math/tex">\bm{n}</script></span> crossing original point.</p>
+</li>
+<li>
+<p><strong>Relativistic particle</strong></p>
+<p>Relativistic particle in <code style="font-family: Menlo, Consolas, &quot;DejaVu Sans Mono&quot;, monospace;">Cartesian coordinate</code> has the Lagrangian of:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = m \bm{v}^2 \sqrt{1 - \bm{v}^2 / c^2} - V(\bm{x})
+</script></span>
+<p>So the equation of motion is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td} {\td t}\frac {\partial L} {\partial \bm{v}} = \frac {\td } {\td t} \frac {m \bm{v}} {\sqrt{1-\bm{v}^2/c^2}} = -\nabla V(\bm{x})
+</script></span>
+<p>i.e., the movement lets the mass get larger.</p>
+</li>
+<li>
+<p><strong>Charged particle in static electromagnetic field</strong></p>
+<p>Consider a particle with charge <span class="math inline-math"><script type="math/tex">Q</script></span> moves in electromagnetic field <span class="math inline-math"><script type="math/tex">(\bm{A}, \phi)</script></span> , with the intensity of field: <span class="math inline-math"><script type="math/tex">\bm{B} = \nabla \times \bm{A} \ ; \ \bm{E} = - \nabla \phi</script></span>. Note that we use Cartesian coordinate to describe the system. The Lagrangian is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 m\bm{v}^2 + Q (\bm{A}\cdot \bm{v} - \phi)
+</script></span>
+<p>Then the equation of motion:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td } {\td t} \Big(m \bm{v} + Q\bm{A}\Big) = - Q \bm{E} + Q \nabla(\bm{A}\cdot \bm{v})
+</script></span>
+<p>Or:</p>
+<span class="math display-math"><script type="math/tex; mode=display">m\frac {\td \bm{v}} {\td t} = -Q \bm{E} + Q \bm{v}\times \bm{B}
+</script></span>
+</li>
+</ol>
+<h2>Integrating the Lagrange Equation</h2>
+<p>When Lagrangian is not dependent of time, one can use Legendre transformation to construct a integral of the equation of motion:</p>
+<span class="math display-math"><script type="math/tex; mode=display">H = \sum_{i=1}^f \flo{q}^i \frac {\partial L} {\partial \flo{q}^i} - L = \text{Const}
+</script></span>
+<p>Usually (when <span class="math inline-math"><script type="math/tex">L</script></span> is a second order homogeneous function of <span class="math inline-math"><script type="math/tex">\flo{q}</script></span>) , Hamiltonian has a simple form of <span class="math inline-math"><script type="math/tex">H = T + V</script></span>.</p>
+<p>When lagrangian is not dependent of a coordinate <span class="math inline-math"><script type="math/tex">q^r</script></span> , i.e. , <span class="math inline-math"><script type="math/tex">\partial L /\partial q^r = 0</script></span> ,  the generalized momentum is conversed (another first integral):</p>
+<span class="math display-math"><script type="math/tex; mode=display">p^r = \frac {\partial L} {\partial \flo{q}^r} = \text{Const}
+</script></span>
+<p>Using these first integral, one can reduce the Lagrange equation into a set of 1-order ODE, which is much easier to solve.</p>
+<ol>
+<li>
+<p><strong>Particle in static electromagnetic field</strong></p>
+<p>The lagrangian is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 m\bm{v}^2 + Q (\bm{A}\cdot \bm{v} - \phi)
+</script></span>
+<p>Obviously it is independent of time. So:</p>
+<span class="math display-math"><script type="math/tex; mode=display">H = \bm{v}\cdot \nabla_{\bm{v}} L - L = \frac 1 2 m\bm{v}^2 + Q \phi = E
+</script></span>
+<p>And one can obtain that:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{v}^2 =\sqrt{\frac {2(E - Q\phi(\bm{x}))} {m}}
+</script></span>
+</li>
+<li>
+<p><strong>Relativistic particle</strong></p>
+<p>The time independent Lagrangian is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = m \bm{v}^2 \sqrt{1 - \bm{v}^2 / c^2} - V(\bm{x})
+</script></span>
+<p>So:</p>
+<span class="math display-math"><script type="math/tex; mode=display">H = \frac {m c^2} {\sqrt{1-\bm{v}^2/c^2}} + V(\bm{x}) = E
+</script></span>
+</li>
+<li>
+<p><strong>Central force</strong></p>
+<p>Consider a particle moves in a central force field:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 m \bm{v}^2 - V(r)
+</script></span>
+<p>Where <span class="math inline-math"><script type="math/tex">r = |\bm{r}|</script></span> . First of all, it is independent of time, one has:</p>
+<span class="math display-math"><script type="math/tex; mode=display">H = \frac 1 2 m \bm{v}^2 - V(r) = E
+</script></span>
+<p>And if we write it with spherical coordinate with:</p>
+<span class="math display-math"><script type="math/tex; mode=display">x = r \sin\theta \cos\phi \ ; \ y = r \sin\theta\sin\phi \ ; \ z = r\cos\phi
+</script></span>
+<p>we have:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 m \Big(\flo{r}^2 + r^2\flo{\theta}^2 + r^2\sin^2\theta \flo{\phi}^2\Big) - V(r)
+</script></span>
+<p>it is independent of angle <span class="math inline-math"><script type="math/tex">\phi</script></span>, so:</p>
+<span class="math display-math"><script type="math/tex; mode=display">p_{\phi} = \frac {\partial L} {\partial \flo{\phi}} = m r^2 \sin^2\theta \flo{\phi} = \text{Const}
+</script></span>
+<p>Initially we can always choose a proper coordinate system so that <span class="math inline-math"><script type="math/tex">\flo{\phi} \neq 0</script></span> while <span class="math inline-math"><script type="math/tex">\theta = \pi/2 \ ; \ \flo{\theta} = 0</script></span> .</p>
+<p>We have the equation of motion for <span class="math inline-math"><script type="math/tex">\theta</script></span>:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td } {\td t} m r^2 \flo{\theta} - \frac 1 2 m r^2\sin(2\theta) \flo{\phi}^2 = 0
+</script></span>
+<p>It has a special solution of <span class="math inline-math"><script type="math/tex">\theta \equiv \pi/2</script></span> under our initial condition. i.e., the movement is constraint on a plane. Then the reduced effective Lagrangian should be:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 m\Big(\flo{r}^2 + r^2 \flo{\phi}^2\Big) - V(r)
+</script></span>
+</li>
+</ol>
+<h1>Summary of Hamilton Theory</h1>
+<h2>Hamiltonian Equation of Motion</h2>
+<p>Any system obeys the canonical equation of motion with its Hamiltonian <span class="math inline-math"><script type="math/tex">H = H(q,p,t)</script></span>.</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+\frac {\td p_i} {\td t} &= -\frac {\partial H} {\partial q_i} \\
+\frac {\td q_i} {\td t} &= \frac {\partial H} {\partial p_i}
+\end{aligned}</script></span>
+<p>Or any function of <span class="math inline-math"><script type="math/tex">q,p,t</script></span>: <span class="math inline-math"><script type="math/tex">A=A(q,p,t)</script></span> along the trajectory(the solution of canonical equation) <span class="math inline-math"><script type="math/tex">\hat A(t)\equiv A(q(t),p(t),t)</script></span> obeys the equation:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td \hat A} {\td t} = \sum_{i=1}^f \frac {\partial A} {\partial q^i} \frac {\td q^i} {\td t} +\frac {\partial A} {\partial p^i} \frac {\td p^i} {\td t} + \frac {\partial A} {\partial t} =  \sum_{i=1}^f \frac {\partial A} {\partial q^i} \frac {\partial H} {\partial p^i} -\frac {\partial A} {\partial p^i} \frac {\partial H} {\partial q^i} + \frac {\partial A} {\partial t}
+</script></span>
+<p>With the definition of Poisson bracket:</p>
+<span class="math display-math"><script type="math/tex; mode=display">[A,B] =\sum_{i=1}^f \frac {\partial A} {\partial q^i} \frac {\partial B}{\partial p^i}-\frac {\partial A} {\partial p^i} \frac {\partial B}{\partial q^i}
+</script></span>
+<p>the dynamical equation can be written as:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td \hat A} {\td t} = \Big([A,H] + \frac {\partial A} {\partial t}\Big)(q(t),p(t),t)
+</script></span>
+<p>Because of <span class="math inline-math"><script type="math/tex">[H,H] \equiv 0</script></span> , so we have an identity:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td \hat H} {\td t} = \frac {\partial H} {\partial t}(q(t),p(t),t)
+</script></span>
+<p>That is to say, if <span class="math inline-math"><script type="math/tex">H</script></span> is independent of time: <span class="math inline-math"><script type="math/tex">\partial_t H = 0</script></span> , then along the trajectory <span class="math inline-math"><script type="math/tex">\hat H = H(q(t),p(t),t)</script></span> should be a constant.</p>
+<p>Similarly, any function <span class="math inline-math"><script type="math/tex">A</script></span>, if <span class="math inline-math"><script type="math/tex">[A,H] + \frac {\partial A} {\partial t} = 0</script></span> , then it is constant along the trajectory.</p>
+<ol>
+<li>
+<p><strong>Laplace-Runge-Lenz vector</strong></p>
+<p>Vector:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{K} = \bm{p}\times (\bm{r}\times \bm{p}) - m \frac {\bm{r}} r = \bm{r} \bm{p}^2 - \bm{p}(\bm{r}\cdot \bm{p}) - m \bm{r}/r
+</script></span>
+<p>is conserved in the Newton-gravity system:</p>
+<span class="math display-math"><script type="math/tex; mode=display">H = \frac {\bm{p}^2} {2m} - \frac 1 {r}
+</script></span>
+<p>The component of vector <span class="math inline-math"><script type="math/tex">\bm{K}</script></span> is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">K^i = x^i p^jp^j - p^i x^j p^j - m x^i/r
+</script></span>
+<p>So:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}[]
+[K^i, H] &= \sum_{l=1}^3 \frac {\partial K^i} {\partial x^l} \frac {\partial H} {\partial p^l} - \frac {\partial K^i} {\partial p^l} \frac {\partial H} {\partial x^l} \\
+&=\sum_{l=1}^3 \Big(\bm{p}^2\delta_{il}-p^i p^j \delta_{lj} - \frac {m(\delta_{il}r - x^i x^l /r)} {r^2}\Big) \frac {p^l} {m} \\
+& - \Big(2x^i p^l - x^j(p^j\delta_{li}+p^i\delta_{lj})\Big)(\frac {x^l} {r^3}) \\
+&=\Big(\bm{p}^2 - p^i\sum_j p^jp^j - \frac {p^i r - x^i \bm{x}\cdot \bm{p}/r} {r^2}\Big) \\
+& - \Big(\frac {2 x^i \bm{x}\cdot \bm{p}} {r^3} -\frac {x^j p^j x^i} {r^3} - \frac {p^i} {r} \Big) \\
+&= \bm{p}^2  - p^i \sum_j p^jp^j = 0
+\end{aligned}</script></span>
+<p>q.e.d.</p>
+<p>With vector <span class="math inline-math"><script type="math/tex">K</script></span> , we have:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\bm{r} \cdot \bm{K} = r K \cos\theta = r^2 p^2 - (\bm{p}\cdot\bm{r})^2 - mr = L^2 - mr
+</script></span>
+<p>So:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac 1 r = \frac {K \cos\theta - m} {L^2}
+</script></span>
+<p>The ellipse orbital.</p>
+</li>
+</ol>
+<h2>Canonical Transformation</h2>
+<p>Consider the transform between <span class="math inline-math"><script type="math/tex">(Q,P)</script></span> and <span class="math inline-math"><script type="math/tex">(q,p)</script></span> (we only consider the transformation who has no explicit time dependence):</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{cases}P &= P(q,p) \\ Q &= Q(q,p)\end{cases} \ ; \ \begin{cases}p &= p(Q,P) \\ q &= q(Q,P)\end{cases}
+</script></span>
+<p>It is a canonical transformation if and only if it holds the form of canonical equation. i.e.:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\tilde{H}(Q,P,t) \equiv H\Big(q(Q,P),p(Q,P),t\Big) \Rightarrow \frac {\td Q} {\td t} = \frac {\partial \tilde{H}} {\partial P} \ ; \ \frac {\td P} {\td t} = -\frac {\partial \tilde{H}} {\partial Q}
+</script></span>
+<p>We can simplify this relationship:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\partial \tilde{H}} {\partial P} = \partial_p H \partial_P p + \partial_q H \partial_P q \ ; \ \frac {\td Q} {\td t} = \partial_q Q \flo{q} + \partial_p Q \flo{p}
+</script></span>
+<p>So we need:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+\flo{q}\partial_P p  -\flo{p}\partial_P q &= \partial_q Q \flo{q} + \partial_p Q \flo{p} \\
+\flo{p}\partial_Q q - \flo{q}\partial_Q p &= \partial_q P \flo{q} + \partial_p P \flo{p}
+\end{aligned}</script></span>
+<p>That is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\partial p} {\partial P} = \frac {\partial Q} {\partial q} \ ; \ \frac {\partial q} {\partial P} = -\frac {\partial Q} {\partial p} \ ; \ \frac {\partial q} {\partial Q} = \frac {\partial P} {\partial p} \ ; \ \frac {\partial p} {\partial Q} = -\frac {\partial P} {\partial q}
+</script></span>
+<h2>Hamilton Jacobi Equation</h2>
+<h3>Generating Function</h3>
+<p>Canonical transformation(CT) will not modify the variation rule:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\delta \int \Big(\flo{q} p  - H\Big)\td t = 0 \ ; \ \delta\int \Big(\flo{Q} P - \tilde{H}\Big)\td t = 0
+</script></span>
+<p>So a class of CT can be generated by the equality:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\flo{q}p - H = \flo{Q} P - \tilde{H} + \frac {\td G} {\td t}
+</script></span>
+<p>Where <span class="math inline-math"><script type="math/tex">G</script></span> can be an arbitrary function, as long as this equality holds.</p>
+<p>We will “derive” the HJ equation in the following manner:</p>
+<p>Let <span class="math inline-math"><script type="math/tex">G = - QP + S(q,P,t)</script></span> , with this form, the equality should be:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\flo{q} p - H = \flo{Q} P - \tilde{H} -\flo{Q} P - Q\flo{P} + \partial_1 S \flo{q} + \partial_2 S \flo{P} + \partial_3 S
+</script></span>
+<p>So we need:</p>
+<span class="math display-math"><script type="math/tex; mode=display">p = \frac {\partial S} {\partial q} (q,P,t) \ ; \ Q = \frac {\partial S} {\partial P}(q,P,t) \ ; \ \tilde{H} - H = \frac {\partial S} {\partial t}(q,P,t)
+</script></span>
+<p>Find a function <span class="math inline-math"><script type="math/tex">S(q,P,t)</script></span> who obeys the equations above, we can find a “generating function” for a set of CTs by:</p>
+<span class="math display-math"><script type="math/tex; mode=display">p = \partial_1 S (q,P,t) \ ; \ Q = \partial_2 S(q,P,t) \Rightarrow q=M(p,Q,t) \ ; \ P = N(p,Q,t)
+</script></span>
+<p>Then one can reduce it into the standard form of CT:</p>
+<span class="math display-math"><script type="math/tex; mode=display">p = p(Q,P,t) \ ; \ q = q(Q,P,t) \cdots
+</script></span>
+<h3>HJ Equation</h3>
+<p>If we can find a CT with which the system can be solved easily in new variables. i.e., <span class="math inline-math"><script type="math/tex">\tilde{H} = 0</script></span>, the solution is trivial:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\td P} {\td t} = \frac {\td Q} {\td t} = 0
+</script></span>
+<p>If this CT can be generated by <span class="math inline-math"><script type="math/tex">S</script></span> , we need:</p>
+<span class="math display-math"><script type="math/tex; mode=display">H(q,p,t) + \frac {\partial S} {\partial t} = 0 \Rightarrow H(q,\frac {\partial S} {\partial q},t) +\frac {\partial S} {\partial t} = 0
+</script></span>
+<p>Solve this equation and obtain a non-trivial solution of <span class="math inline-math"><script type="math/tex">S</script></span>, that is to say, the solution <span class="math inline-math"><script type="math/tex">S</script></span> should be a function of <span class="math inline-math"><script type="math/tex">q,t</script></span> and contain <span class="math inline-math"><script type="math/tex">f</script></span> parameters:</p>
+<span class="math display-math"><script type="math/tex; mode=display">S = S(q,t; \alpha)
+</script></span>
+<p>Then one can generate a CT by generating function <span class="math inline-math"><script type="math/tex">S(q,t;P)</script></span>:</p>
+<span class="math display-math"><script type="math/tex; mode=display">p = \partial_q S(q,t;P) \ ; \ Q = \partial_P S(q,t;P)
+</script></span>
+<p>Since <span class="math inline-math"><script type="math/tex">S</script></span> satisfies the HJ equation (or equivalently, the requirement of CT), such a transformation will automatically be canonical.</p>
+<ol>
+<li>
+<p><strong>1D Harmonic Oscilltor</strong></p>
+<p>The Hamiltonian is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">H(q,p,t) = \frac 1 2 (q^2 + p^2)
+</script></span>
+<p>Then the HJE should be:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\partial S} {\partial t} = \frac 1 2 q^2 + \frac 1 2 \Big(\frac {\partial S} {\partial q}\Big)^2
+</script></span>
+<p>We need only find a solution of this equation. Consider <span class="math inline-math"><script type="math/tex">S = f(q) + Et/2</script></span>:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac 1 2 E = \frac 1 2 q^2 + \frac 1 2 (f')^2 \Rightarrow \frac {\td f} {\td q} = \sqrt{E-q^2}
+</script></span>
+<p>Integral it one can find a solution of <span class="math inline-math"><script type="math/tex">f</script></span>: <span class="math inline-math"><script type="math/tex">f(q) = \frac 1 2 \Big(q\sqrt{E-q^2}+ E\arctan\frac {q} {\sqrt{E-q^2}}\Big) + C</script></span> . Note that the parameter <span class="math inline-math"><script type="math/tex">C</script></span> will make no difference because <span class="math inline-math"><script type="math/tex">\partial S/\partial C \equiv 0</script></span> , then:</p>
+<span class="math display-math"><script type="math/tex; mode=display">S(q,t;E) = \frac {Et} 2 + \frac 1 2 \Big(q\sqrt{E-q^2}+ E\arctan\frac {q} {\sqrt{E-q^2}}\Big)
+</script></span>
+<p>Then the generated CT is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+p &= \frac {\partial S(q,t;P)} {\partial q} = \sqrt{P - q^2} \\
+Q &= \frac {\partial S(q,t;P)} {\partial P} = \frac t 2 + \frac 1 2 \arctan \frac {q} {\sqrt{P-q^2}}
+\end{aligned}</script></span>
+<p>So that is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+P &= q^2 + p^2 \\
+Q &= \frac 1 2 t + \frac 1 2 \arctan \frac {q} {p}
+\end{aligned}</script></span>
+<p>According to our assumption, they should be constant, then the solution w.r.t. <span class="math inline-math"><script type="math/tex">q,p</script></span> is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">q^2 + p^2 = C_1 \ ; \ \frac {q} p = \tan(C_2 - t)
+</script></span>
+<p>That is the solution of Harmonic oscilltor.</p>
+<p>One can check that the <span class="math inline-math"><script type="math/tex">P,Q</script></span> indeed define a CT, and the Hamiltonian is zero.</p>
+</li>
+<li>
+<p><strong>Newton gravity</strong></p>
+<p>We know that the reduced Lagrangian is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">L = \frac 1 2 m (\flo{r}^2 + r^2 \flo{\phi}^2) + \frac k r
+</script></span>
+<p>So the equivalent Hamiltonian is:</p>
+<span class="math display-math"><script type="math/tex; mode=display">H(q,p,t) = p_r^2 + \frac {p_{\phi}^2} {r^2} + \frac c r
+</script></span>
+<p>Then the HJE:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\frac {\partial S} {\partial t} + \frac c r + (\frac {\partial S} {\partial r})^2 + \frac 1 {r^2} (\frac {\partial S} {\partial \phi})^2 = 0
+</script></span>
+<p>Assume: <span class="math inline-math"><script type="math/tex">S(q,t) = a_1 t + f(r) + g(\phi)</script></span> , then:</p>
+<span class="math display-math"><script type="math/tex; mode=display">\begin{aligned}
+a_1 + \frac c r + (f')^2 + \frac 1 {r^2} (g')^2 = 0
+\end{aligned}</script></span>
+<p>Note that <span class="math inline-math"><script type="math/tex">g'</script></span> is a function of <span class="math inline-math"><script type="math/tex">\phi</script></span> and <span class="math inline-math"><script type="math/tex">f'</script></span> is a function of <span class="math inline-math"><script type="math/tex">r</script></span>, the equality holds only when:</p>
+<span class="math display-math"><script type="math/tex; mode=display">a_1 r^2 + c r + r^2 (f')^2 = - (g')^2 = -a_2
+</script></span>
+<p>So:</p>
+<span class="math display-math"><script type="math/tex; mode=display">g(\phi) = \sqrt{a_2} t \ ; \ f'(r) = \sqrt{\frac {-a_2 - a_1 r^2 - c r} {r^2}}
+</script></span>
+<p>It is solvable:</p>
+<span class="math display-math"><script type="math/tex; mode=display">f(r) = \frac{1}{2 \sqrt{a_1} \sqrt{r (a_1 r+c)+a_2}}\Big(r \sqrt{-\frac{r (a_1 r+c)+a_2}{r^2}} \\
+\left(c \tanh ^{-1}\left(\frac{2 a_1 r+c}{2 \sqrt{a_1} \sqrt{r (a_1 r+c)+a_2}}\right)+2 \sqrt{a_1} \left(\sqrt{r (a_1 r+c)+a_2} \\
+-\sqrt{a_2} \tanh ^{-1}\left(\frac{2 a_2+c r}{2 \sqrt{a_2} \sqrt{r (a_1 r+c)+a_2}}\right)\right)\right)\Big)</script></span>
+</li>
+</ol>
+
+  </body>
+</html>
