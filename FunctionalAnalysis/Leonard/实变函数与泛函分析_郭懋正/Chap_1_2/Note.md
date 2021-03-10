@@ -1,0 +1,1 @@
+# Note for Chap 1.2

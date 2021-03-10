@@ -1,0 +1,1 @@
+# Exercise in Chap. 1.2
