@@ -19,3 +19,61 @@ $$
 $$
 \limsup x_n = \lim h_n \ ; \ \liminf x_n = \lim m_n
 $$
+
+
+## 集合的上下极限
+
+通过定义集合的特征函数:
+
+$$
+\chi_A(x) = \begin{cases}
+1 & x \in A \\
+0 & x \notin A
+\end{cases}
+$$
+
+可以表示出集合的上下极限, 为:
+
+$$
+\begin{aligned}
+\limsup \chi_{A_n} &= \chi_{\limsup A_n} \\
+\liminf \chi_{A_n} &= \chi_{\liminf A_n}
+\end{aligned}
+$$
+
+同样的, 有时集合的上下极限也被定义为:
+
+$$
+\begin{aligned}
+\limsup A_n &= \bigcap_{m=1}^{\infty} \bigcup_{n=1}^m A_n \\
+\liminf A_n &= \bigcup_{m=1}^\infty \bigcap_{n=1}^m A_n
+\end{aligned}
+$$
+
+我们来证明这两种定义的等价性.
+
+考虑上极限:
+
+$$
+\begin{aligned}
+\limsup \chi_{A_n}(x) &= \lim_{n\rightarrow \infty} \sup\{\chi_{A_m}(x) : m \geq n\} \\
+&= \lim_{n\rightarrow \infty} 
+\begin{cases}
+1 & x\in \cup_{m\geq n} A_m  \\
+0 & x \notin \cup_{m\geq n} A_m
+\end{cases} \\
+&= \begin{cases}
+1 & x \in \cap_n \cup_{m\geq n} A_m \\
+0 & x \notin \cap_n \cup_{m\geq n} A_m 
+\end{cases} \\
+&= \chi_{\cap_n \cup_{m\geq n} A_m} (x)
+\end{aligned}
+$$
+
+需要注意到
+
+$$
+R_n =\bigcup_{m\geq n} A_m
+$$
+
+对于指标 $n$ 是一个降列, 即 $n_1 \leq n_2 : R_{n_1} \supset R_{n_2}$. 因此若 $x$ 非其交中的元素, 那么函数序列极限必定是 0, 否则为1. 因此我们得证. 下极限的证明是类似的.

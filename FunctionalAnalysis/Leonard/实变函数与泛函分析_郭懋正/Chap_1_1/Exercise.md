@@ -202,3 +202,146 @@ $$\empty = x\Delta A = x \cup A - x\cap A$$
 $$x\cap A \subset A \subset x\cup A \subset x\cap A$$
 
 从而得到应当有 $x\cap A = x\cup A = A$. 故只能有 $x = A$. 得证.
+
+## 1.4
+
+### Problem
+
+设 $\{A_n\}, \{B_n\}$ 为升列, 即 $A_n \subset A_{n+1}, B_n \subset B_{n+1}$. 证明:
+
+$$\Big(\bigcup_{n=1}^{\infty} A_n\Big)\bigcap \Big(\bigcup_{n=1}^{\infty} B_n\Big) = \bigcup_{n=1}^{\infty} (A_n\cap B_n)$$
+
+### Proof
+
+考察上式右边:
+
+$$
+\begin{aligned}
+\bigcup_{n=1}^N (A_n\cap B_n) &= \bigcup_{n=1}^{N-1} (A_n\cap B_n) \cup (A_{N}\cap B_N) \\
+&= (\bigcup_{n=1}^{N-1} (A_n\cap B_n) \cup A_N) \cap (\bigcup_{n=1}^{N-1} (A_n\cap B_n) \cup B_N) \\
+&= A_N \cap B_N \\
+&= (\bigcup_{n=1}^N A_n) \cap (\bigcup_{n=1}^N B_n)
+\end{aligned}
+$$
+
+我们细致讨论第三个等号, 由于对称性我们只需要讨论一个括号, 即:
+
+$$
+\bigcup_{n=1}^{N-1} (A_n \cap B_n) \cup A_N
+$$
+
+由于其升列性, 我们自动拥有:
+
+$$
+\forall n \leq N-1 : A_n \subset A_N \Rightarrow \forall n\leq N-1 : (A_n\cap B_n)\subset A_N
+$$
+
+从而该并集计算的第一个参数是第二个参数的子集, 即证.
+
+## 1.5
+
+### Problem
+
+设 $\{A_n\}$ 为一集合列, 令:
+
+$$
+B_1 = A_1 \ ; \ B_i = A_i -(\bigcup_{j=1}^{i-1} A_j) (i\gt 1)
+$$
+
+证明 $\{B_n\}$ 互不相交, 且对任意的 $n$ 有
+
+$$
+\bigcup_{i=1}^n A_i = \bigcup_{i=1}^n B_i
+$$
+
+### Proof
+
+$$
+\begin{aligned}
+\bigcup_{n=1}^{N-1} B_n &= A_1 \cup (A_2 - A_1)\cup (A_3 - (A_1\cup A_2)) \cup \cdots \\
+&= (A_1\cup A_2) \cup (A_3 - (A_1 \cup A_2)) \cup \cdots \\
+&= \bigcup_{n=1}^{N-1} A_n
+\end{aligned}
+$$
+
+则有:
+
+$$
+\begin{aligned}
+B_N \cap \bigcup_{i=1}^{N-1} B_i &= A_N - (\bigcup_{j=1}^{N-1} A_j) \cap \bigcup_{j=1}^{N-1} A_j \\
+&= \empty
+\end{aligned}
+$$
+
+从第二类数学归纳法通过从 $A_2-A_1\cap A_1 = \empty$ 出发, 注意到如果假设 $\{B_i\}_{i=1}^{N-1}$ 互不相交, 那么上面的结论立即给出 $B_N$ 同它们均不交.
+
+## 1.6
+
+### Problem
+
+设 $\{f_n(x)\}$ 是 $\mathbb{R}$ 上的函数列,
+
+$$
+A = \{x: \limsup f_n(x) \gt 0\} \ ; \ A_{mn} = \{x: f_n(x) \gt 1/m\} , m,n\in\mathbb{N}
+$$
+
+用 $A_{mn}$ 表示 $A$
+
+### Proof
+
+We have
+
+$$
+\begin{aligned}
+A &= \{x: \limsup f_n(x) \gt 0\} \\
+&= \{x: \lim_{m\rightarrow \infty} \sup \{f_n(x)\}_{n\geq m} \gt 0\} \\
+&= \bigcap_{m=1}^{\infty} \{x: \sup\{f_n(x)\}_{n\geq m} \gt 0\} \\
+&= \bigcap_{l=1}^{\infty} \bigcup_{m=1}^{\infty} \{x : \sup \{f_n(x)\}_{n\geq l} \gt 1/m\} \\
+&= \bigcap_{l=1}^\infty \bigcup_{m=1}^{\infty} \bigcup_{n=l}^\infty \{x: f_n(x) \gt 1/m\} \\
+&=\bigcap_{l=1}^\infty \bigcup_{m=1}^\infty \bigcup_{n=l}^\infty A_{mn}
+\end{aligned}
+$$
+
+For the third equality, note that we always have
+
+$$\sup\{f_n(x)\}_{n\geq m} \leq \sup\{f_n(x)\}_{n\geq m-1}$$
+
+That is, series $\sup\{f_n(x)\}_{n\geq m}$ is not increase with respect to $m$. That is:
+
+$$\{x: \sup\{f_n(x)\}_{n\geq m}\gt 0\}\subset \{x: \sup\{f_n(x)\}_{n\geq m-1}\gt 0\}$$
+
+So the limit is greater than $0$ is equivalent to the limit of intersect sets.
+
+Another useful conclusion is
+
+$$
+\begin{aligned}
+\{x: \sup\{f_n(x)\}_{n\geq l} \gt 0\} &= \bigcup_{n\geq l}\{x: f_n(x) \gt 0\} 
+\end{aligned}
+$$
+
+## 1.7
+
+### Problem
+
+设 $\{f_n(x)\}$ 为区间 $(a,b)$ 上的单调增函数列, 证明:
+
+$$
+\forall a \in \mathbb{R} : \{x: \lim f_n(x)\gt a\} = \bigcup_{n=1}^{\infty} \{x: f_n(x) \gt a\}
+$$
+
+### Proof
+
+这个问题存在模糊, 但推测所谓单调增函数列是指:
+
+$$\forall m,n\in\mathbb{N} :m\leq n \Rightarrow \forall x\in(a,b) : f_m(x)\leq f_n(x)$$
+
+此时根据极限过程的集合为升列不难证得. 
+
+而如果描述是指 $(a,b)$ 上的单调增函数组成的序列, 那么完全可以构造:
+
+$$
+f_{n+1}(x) = f_n(x - \epsilon)
+$$
+
+即每一项均为前项的右平移, 这样构造得到的极限过程的序列为递降列, 从而违反命题.
