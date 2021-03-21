@@ -101,3 +101,62 @@ $$
     从 $S$ 的周期性不难得证 $f \in L^2[a,b]$ 且 $f \in S^\bot$
 
 
+## 8
+
+## Problem
+
+$\{e_n\}, \{f_n\}$ 是 Hilbert 空间 $H$ 中两个标准正交集, 满足条件:
+
+$$
+\sum_{n=1}^\infty \|e_n-f_n\|^2 \lt \infty
+$$
+
+求证两者中一个完备蕴含另一个完备
+
+## Solution
+
+我们证明 e => f
+
+根据假设
+
+$$
+\sum_n \|e_n - f_n\| \lt \infty
+$$
+
+我们有:
+
+$$
+\begin{aligned}
+\sum_n \|e_n-f_n\| &= \sum_n 2 - 2\textrm{Re}(e_n,f_n) \\
+&\geq \sum_n 2 - 2 |(e_n,f_n)|^2 \lt \infty
+\end{aligned}
+\Rightarrow |(e_n,f_n)|\rightarrow 1
+$$
+
+从而, 考虑 $n\gt N$, 我们有 $1+\epsilon \gt|(e_n,f_n)|^2\gt 1-\epsilon$, 且 $\sum_{n\gt N} 1 -|(e_n,f_n)|^2 \lt \epsilon \Rightarrow \sum_{n\gt N} \sum_{m\neq n} |(e_m,f_n)|^2 \lt \epsilon $
+
+考虑 $x\in\textrm{span} \{e_n\}_{n\gt N}$ 且 $\|x\|^2 =1$ 我们有:
+
+$$
+\begin{aligned}
+\sum_{n\gt N} |(x, f_n)|^2 &= \sum_{n\gt N} \Big|(x, (f_n,e_n)e_n + \sum_{m\neq n} (f_n,e_m)e_m)\Big|^2 \\
+&=\sum_{n\gt N}\Big|(x,e_n)(f_n,e_n)^* + \sum_{m\neq n} (x,e_m)(f_n,e_m)^*\Big|^2 \\
+&\leq \sum_{n\gt N}|(x,e_n)(f_n,e_n)^*|^2 + \sum_{n\gt N} \sum_{m\neq n} |(x,e_m)|^2 |(f_n,e_m)|^2 \\
+&\lt 1+2\epsilon
+\end{aligned}
+$$
+
+与此同时, 我们有:
+
+$$
+\begin{aligned}
+\sum_{n\gt N}|(x,f_n)|^2 &= \sum_{n\gt N}\Big|(x,e_n)(f_n,e_n)^* + \sum_{m\neq n} (x,e_m)(f_n,e_m)^*\Big|^2 \\ 
+&\geq \sum_{n\gt N }\Big||(x,e_n)|^2 |(f_n,e_n)|^2 - |\sum_{m\neq n} (x,e_m)(f_n,e_m)^* |^2\Big|\\
+&\geq \sum_{n\gt N }\Big||(x,e_n)|^2 |(f_n,e_n)|^2 - \sum_{m\neq n} |(x,e_m)|^2|(f_n,e_m) |^2\Big|\\
+&\geq \sum_{n\gt N }\Big||(x,e_n)|^2 |(f_n,e_n)|^2 - \sum_{m\neq n} |(f_n,e_m) |^2\Big|\\ 
+&=\sum_{n\gt N }\Big||(x,e_n)|^2 |(f_n,e_n)|^2 - (1-|(e_n,f_n)|^2)\Big|\\
+&\gt 1 -2\epsilon
+\end{aligned}
+$$
+
+从而, 我们证明了在 $N$ 足够大时 $\{f_n\}_{n\gt N}$ 同样是 $\textrm{span}\{e_n\}_{n\gt N}$ 的一组基. 而在 $n\leq N$ 对应的有限维空间中的 $N$ 个标准正交矢量天然成为一组基. 从而我们得证 $\{f_n\}$ 也是一组基, 换言之它是完备的.
