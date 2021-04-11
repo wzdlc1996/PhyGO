@@ -56,6 +56,34 @@ _[Theorem]_ : 若 $\mathcal{E}=\{e_\alpha:\alpha\in \Lambda\}$ 是Hilbert 空间
    $$
    得证.
 
+对于特别的一类 **可分** Hilbert空间, 即其拥有 **可数的稠密子集**, 则成立如下的关于其上正交集的定理
+
+_[Theorem]_: Hilbert 空间 $H$ 是可分的, 等价于, 它有至多可数的标准正交基 $\mathcal{E}$. 若 $|\mathcal{E}|= N \lt \infty$, 则它于 $\mathbb{K}^N$ 同构, 若 $N=\infty$, 则与 $l^2$ (平方可和序列空间) 同构.
+
+_[Proof]_: 
+1.  必要性
+    
+    设 $\{x_n\}_{n=1}^{\infty}$ 是 $H$ 的可数稠密子集, 那么其中必存在一个极大线性无关子集 $\{y_n\}_{n=1}^N$, 其中 $N\lt \infty$ 或者 $N=\infty$, 使得
+
+    $$
+    \textrm{span} \{y_n\} = \textrm{span} \{x_n\}
+    $$
+
+    等号右边基于稠密性应当正为 $H$, 否则我们将能够找到另一个线性无关方向, 利用这个方向我们总能够找到同 $\{x_n\}$ 存在有限距离的点, 使得与稠密性矛盾. 
+
+    对这样找到的集合使用 Gram-Schmidt 正交化过程便得到了一组标准正交基的构造. 
+
+2.  充分性
+    考虑标准正交基 $\mathcal{E}=\{e_n\}_{n=1}^N$, 其中 $N$ 可以是有限也可以是无穷. 则集合
+
+    $$
+    \{x=\sum_{i=1}^N a_n e_n \in H: \textrm{Re} a_n, \textrm{Im}a_n \in \mathbb{Q}\}
+    $$
+
+    正是 $H$ 中的稠密可数子集, 从而 $H$ 是可分的.
+
+同构性的证明, 有限维情形是平凡的, 而无限维情形只需要注意到 Parseval 等式 $\|x\|^2 = \sum_{n} |(x,e_n)|^2$, 即可看到. 
+
 ## Riesz 表示定理
 
 Hilbert 空间 $H$ 上的线性泛函被定义一类函数: $f:H\rightarrow \mathbb{K}$, 且满足:
