@@ -44,6 +44,17 @@ def merge_sort(a):
         p2 = merge_sort(a[flip:])
         return merg(p1, p2)
 
+# bubble sort
+def bubble_sort(a_):
+    a = a_.copy()
+    for i in range(len(a)):
+        for j in range(len(a)-1, i, -1):
+            if a[j] < a[j-1]:
+                temp = a[j]
+                a[j] = a[j-1]
+                a[j-1] = temp
+    return a
+
 def test_sort(input_array: list):
     check = True
     for i in range(len(input_array) - 1):
@@ -67,5 +78,8 @@ if __name__ == "__main__":
     print("------------------------------")
     print("Test: merge_sort")
     main(merge_sort)
+    print("------------------------------")
+    print("Test: bubble_sort")
+    main(bubble_sort)
 
         
