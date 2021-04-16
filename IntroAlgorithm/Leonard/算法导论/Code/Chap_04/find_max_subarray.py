@@ -1,7 +1,17 @@
 #!/usr/bin/env python
 
-import time
 import random
+import sys
+import os
+import time
+
+sys.path.append(os.path.realpath(__file__ + "/../.."))
+"""
+Only works when `pwd` is the location of this file
+#sys.path.append("..")
+"""
+from Base import randArr
+
 
 def brute_force(arr: list):
     ansDict = {}
