@@ -22,3 +22,25 @@ T(n) &= 2T(n/2) + n \\
 $$
 
 得证. 其边界条件 (如果这样取, $n\log n |_{n=1} = 0$), 可以通过略为修改定义为 $T(1) = O(1), T(n\gt 1) = O(n\log n)$ 实现. 
+
+## 递归树方法
+
+递归树方法的实质事实上就是反复应用递归式, 将其转化为某种求和来得到结论. 比如上个部分我们计算的矩阵乘法的分治法的递归方程.
+
+## 主方法
+
+主定理:
+
+令 $a\geq 1, b\gt 1$ 是常数, 则递归式
+
+$$
+T(n) = a T(n/b) + f(n)
+$$
+
+的解有如下渐近界
+
+1.  若 $\exists \epsilon\gt 0\rightarrow f(n)=O(n^{\log_b a-\epsilon})$ 那么 $T(n) = \Theta(n^{\log_b a})$
+2.  若 $f(n) = \Theta(n^{\log_b a})$, 那么 $T(n) = \Theta(n^{\log_b a} \log n)$
+3.  若 $\exists \epsilon\gt 0 \rightarrow f(n) = \Omega(n^{\log_b a + \epsilon})$, 且对某个常数 $c\lt 1$ 和所有足够大的 $n$ 有 $a f(n/b) \leq cf(n)$, 那么 $T(n) = \Theta(f(n))$
+
+上面的结论可以推广到 $n/b$ 是向上取整或向下取整的情况. 
