@@ -66,3 +66,30 @@ def rand_half() -> int:
 ```
 
 该算法逃出循环给出返回值的概率为 $2p(1-p)$, 从而, 期望运行时间为 $1/(2p(1-p))$
+
+### Bernoulli(p) with fair-coin
+
+如果给定一个均等概率产生 `0, 1` 的随机数发生器, 构造以 `p` 概率生成 1 的函数
+
+```python
+def rand_st() -> int:
+    """
+    Return 0, 1 with equal probability
+    """
+    pass
+
+def bernoulli(p, e) -> int:
+    """
+    Return 1 with probability p, and 0 with 1-p
+    The precision is e
+    """
+    n = log2(1 / e)
+    r = [rand_st() for _ in range(n)]
+    if base(r, 2) > p * 2 ** n:
+        return 0
+    else:
+        return 1
+```
+
+其中 `log2` 为以2为底的对数, `base(r, 2)` 返回以 `r` 为数字的2进制整数. 
+
