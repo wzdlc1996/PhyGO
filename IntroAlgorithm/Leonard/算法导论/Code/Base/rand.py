@@ -2,6 +2,19 @@
 
 import random
 
+def randInt(a, b) -> int:
+    """
+    Generate a random integer in the interval(left-in-right-out) [a, b)
+
+    :param a: Left start of the interval
+    :param b: Right end of the interval
+    :return: integer
+    """
+    if b <= a:
+        return 0
+    else:
+        return random.randint(a, b+1)
+
 def randArr1D(leng: int, rang: slice = (-1,1)) -> list:
     """
     Generate a random 1-D array.
