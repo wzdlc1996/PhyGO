@@ -135,6 +135,7 @@ def randomSearch(array: list, target: int) -> int:
     $$
     \begin{aligned}
     \mathbb{P}(X = n+1|c_n =N) &= 1\\
+    \mathbb{P}(X= n+1| c_n = l\lt n) &= k / N\\
     \mathbb{P}(c_n = r+1| c_{n-1} = r) &= \max\{0, \frac {N-k-r}{N}\} \\
     \mathbb{P}(c_n=r| c_{n-1} = r) &= 1- \mathbb{P}(c_n=r+1|c_{n-1} =r) \\
     \mathbb{P}(c_0 = 0) = 1
