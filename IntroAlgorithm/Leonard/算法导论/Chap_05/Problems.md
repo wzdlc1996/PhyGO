@@ -129,6 +129,33 @@ def randomSearch(array: list, target: int) -> int:
     \mathbb{E}(X) = \sum_{n=1}^{\infty} \frac {nk} N (1- \frac k N)^{n-1} = \frac k N \Big(\frac {1-kN^{-1}} {(1-(1-kN^{-1}))^2}\Big) = \frac N k -1
     $$
 
+    考虑当 $k=0$, 即数组中没有所求的元素. 此时循环停止只能来自于所有的元素都被访问过一次. 这个问题等价于球箱问题:
+    > 考虑 $N$ 个盒子, 每次都均等概率地往盒子中放球. 问放 $n$ 个球后使得每个盒子中都被放球的概率. 
+    
+    求解这个问题我们可以采用如下的策略. 考察随机变量 $n_i$, 它被定义为第 $i-1$ 次命中(即访问到一个新元素)到 $i$ 次之间的循环次数. 即 `cap` 的值为 `i-1` 持续的循环次数. 从而
+
+    $$
+    \mathbb{E}(X) = \mathbb{E}\Big(\sum_{i=1}^{N} n_i\Big) = \sum_{i=1}^N \mathbb{E} n_i
+    $$
+
+    考虑 $n_i$, 此时已经有 $i-1$ 个元素被访问到了. 从而
+
+    $$
+    \mathbb{P}(n_i = l) = \Big(\frac {i-1} {N}\Big)^l\times (1 - \frac {i-1} N)
+    $$
+    
+    故
+
+    $$
+    \mathbb{E}(n_i) = \frac {(i-1)/N} {1- \frac {i-1} N} = \frac {i-1} {N-i+1}
+    $$
+
+    从而
+
+    $$
+    \mathbb{E}(X) = \sum_{i=1}^N \frac {i-1} {N-i+1}  = \Theta( N\log N)
+    $$
+
 2.  考虑该停止机制
     考虑在第 $n$ 个循环结束时, 变量 `cap` 的值为 $c_n$, 它代表已经被检查过的元素的个数. 从而:
 
@@ -138,8 +165,24 @@ def randomSearch(array: list, target: int) -> int:
     \mathbb{P}(X= n+1| c_n = l\lt n) &= k / N\\
     \mathbb{P}(c_n = r+1| c_{n-1} = r) &= \max\{0, \frac {N-k-r}{N}\} \\
     \mathbb{P}(c_n=r| c_{n-1} = r) &= 1- \mathbb{P}(c_n=r+1|c_{n-1} =r) \\
-    \mathbb{P}(c_0 = 0) = 1
+    \mathbb{P}(c_0 = 0) &= 1
     \end{aligned}
     $$
 
-如果 $k=0$, 即原数组中不存在所找的元素. 则
+    故我们有:
+
+    $$
+    \begin{aligned}
+    \mathbb{P}(X=n) &= \sum_{l_1=0}^N \mathbb{P}(X=n|c_{n-1} = l_1)\mathbb{P}(c_{n-1} = l_1) \\ 
+    &= \sum_{l_1=0}^N \sum_{l_2}\mathbb{P}(X=n|c_{n-1} = l_1)\mathbb{P}(c_{n-1} = l_1|c_{n-2} = l_2)\mathbb{P}(c_{n-2} = l_2)\\
+    &= \sum_{l_1,\cdots,l_n} \mathbb{P}(X=n|c_{n-1} = l_1) R_{l_1,l_2} \cdots, R_{l_{n-1},l_n} \mathbb{P}(c_0=l_n)
+    \end{aligned}
+    $$
+
+    其中
+
+    $$
+    R_{m,n} = \mathbb{P}(c_{s+1} = m|c_{s}=n) = \delta_{m,n+1} \max\{0, \frac {N - k - n} {N}\} + \delta_{m,n}(1-\max\{0,\frac {N-k-n} N\})
+    $$
+
+    该过程也许可以通过数值进行模拟. 但并不会对上面忽略停止机制的分析造成过大的影响. 
