@@ -31,3 +31,39 @@
 2.  `buildMaxHeap`, 它具有线性时间复杂度来从无序数组生成一个最大堆
 3.  `heapSort`, 时间复杂度为 $O(n\log n)$, 它对一个数组进行原址排序
 4.  `maxHeapInsert`, `heapExtractMax`, `heapIncreaseKey`, 和 `heapMaximum`, 它们利用堆来实现一个优先队列.
+
+## 维护堆的性质
+
+我们来介绍 `maxHeapify` 的实现, 它是维护堆为一个最大堆的重要过程. 其输入为一个数组 `arr` 和一个下标 `i`, 在调用 `maxHeapify` 是, 我们假定了根节点为 `left(i)`, `right(i)` (即节点 `i` 的左右子节点)的子堆均为最大堆, 但这时 `arr[i]` 可能会小于其子节点. 而 `maxHeapify` 过程就是不断调整 `arr[i]` 的值(在数组中不断交换其位置), 来保证它引导的子堆是一个最大堆. 我们需要让 `arr[i]` 在堆中逐级下降直到它处在一个合理的位置. 
+
+```python{.line-numbers}
+def left(i):
+    return 2 * i
+
+def right(i):
+    return 2 * i + 1
+
+def heapSize(arr):
+    return int(log2(len(arr)))
+
+def maxHeapify(arr, i):
+    l = left(i)
+    r = right(i)
+    if l <= heapSize(arr) and arr[l] > arr[i]:
+        largest = l
+    else:
+        largest = i
+    if r <= heapSize(arr) and arr[r] > arr[largest]:
+        largest = r
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        maxHeapify(arr, largest)
+```
+
+我们来分析这个实现.
+
+1.  1-9行实现的这些函数是为了方便把数组作为堆来进行处理
+2.  11-18行比较了节点 `i, l, r`. 找到了其中最大的元素并将其索引赋值给 `largest`. 
+3.  19行的 `if` 分支在 `largest` 等于 `i` 时不会运行, 因为此时按照我们的假设(`i` 的子结点开始的子树是最大堆), `i` 引导的子堆自然为最大堆
+4.  20行对换了 `arr[i]` 和 `arr[largest]` 的值, 事实上就是将 `arr[i]` 和它最大的子结点之间进行了对换.
+5.  21行递归的再次调用 `maxHeapify` 方法, 这使得子堆也将保持最大堆性质. 
