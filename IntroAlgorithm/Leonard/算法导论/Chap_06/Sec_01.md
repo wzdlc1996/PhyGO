@@ -67,3 +67,20 @@ def maxHeapify(arr, i):
 3.  19行的 `if` 分支在 `largest` 等于 `i` 时不会运行, 因为此时按照我们的假设(`i` 的子结点开始的子树是最大堆), `i` 引导的子堆自然为最大堆
 4.  20行对换了 `arr[i]` 和 `arr[largest]` 的值, 事实上就是将 `arr[i]` 和它最大的子结点之间进行了对换.
 5.  21行递归的再次调用 `maxHeapify` 方法, 这使得子堆也将保持最大堆性质. 
+
+我们来分析这个实现的时间复杂度, 考虑 `i=0`, 即对应于最差情况, 整个数组都需要被考虑. 11-20行的部分均为常数量级的操作, 即 $\Theta(1)$, 而递归调用的 `maxHeapify`将从 `i=0` 的两个子结点开始, 此时这两个子堆的尺寸 (如果 `arr` 的尺寸为 $N$), 在最差情况, 我们选择到了底层全满而另一个底层全空的情况, 此时有
+
+$$
+\begin{aligned}
+1 + n_{\textrm{less}} + n_{\textrm{more}} &= N  \\
+1+\log_2 (n_{\textrm{less}}+1) &=\log_2 (n_{\textrm{more}} + 1)
+\end{aligned}\Rightarrow n_{\textrm{more}} = \Theta(2 N /3)
+$$
+
+从而我们有时间复杂度的递归式：
+
+$$
+T(N) \leq T(2 N /3) + \Theta(1) \Rightarrow T(N) = O(\log N)
+$$
+
+从而 `maxHeapify` 函数实现的时间复杂度为对数于数组尺寸. 
