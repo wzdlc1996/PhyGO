@@ -18,7 +18,7 @@
 如图就是一个 **最大二叉堆(max binary heap)** 的两种表示. 通常的堆有如下的性质:
 
 1.  它将数组的元素从顶往下, 从左往右依次摆放成为树
-2.  在二叉的情形下, 索引为 `i` 个元素的左子元素索引为 `2*i`, 右子元素为 `2*i+1`, 其父节点索引为 `floor(i/2)`. 
+2.  在二叉的情形下, 索引为 `i` 个元素的左子元素索引为 `2*i+1`, 右子元素为 `2*i+2`, 其父节点索引为 `floor(i/2)`. (注意根节点的索引为 `0`)
 
 二叉堆有两种形式:
 
@@ -38,22 +38,22 @@
 
 ```python{.line-numbers}
 def left(i):
-    return 2 * i
-
-def right(i):
     return 2 * i + 1
 
+def right(i):
+    return 2 * i + 2
+
 def heapSize(arr):
-    return int(log2(len(arr)))
+    return len(arr)
 
 def maxHeapify(arr, i):
     l = left(i)
     r = right(i)
-    if l <= heapSize(arr) and arr[l] > arr[i]:
+    if l < heapSize(arr) and arr[l] > arr[i]:
         largest = l
     else:
         largest = i
-    if r <= heapSize(arr) and arr[r] > arr[largest]:
+    if r < heapSize(arr) and arr[r] > arr[largest]:
         largest = r
     if largest != i:
         arr[i], arr[largest] = arr[largest], arr[i]
@@ -84,3 +84,31 @@ T(N) \leq T(2 N /3) + \Theta(1) \Rightarrow T(N) = O(\log N)
 $$
 
 从而 `maxHeapify` 函数实现的时间复杂度为对数于数组尺寸. 
+
+## 生成堆
+
+为了将一个数组重排成最大堆的结构, 我们可以从底向上调用 `maxHeapify`. 只需要注意到子数组 `arr[int(n/2+1):]` 的元素都是树的叶节点. 这来自于考虑叶深度为 $d$ (其中根节点深度为 $0$)的二叉树, 其最左叶节点的索引为 $2^d -1\lt n$. 而下一层的最左叶节点, 即 $2^{d+1} - 1$ 不存在. 从而考虑数组长度 $n$, 应当有 $2^{d+1} - 1 \geq n$. 而这意味着 $d+1 = \textrm{floor}(\log_2 (n+1))$, 从而最左的叶节点的索引应为 $2^d - 1 = \frac {2^{\textrm{floor}(\log n+1)}} 2 - 1 \leq \frac {n+1} 2 -1 \leq \textrm{floor}(\frac {n+1} 2)$.
+
+从而我们只需要从这个节点往前调用 `maxHeapify`. 其代码如下
+
+```python{.line-numbers}
+def buildMaxHeap(arr):
+    for i in range(int((len(arr) - 1)/2), -1, -1):
+        maxHeapify(arr, i)
+```
+
+考察算法的时间复杂度. 2~3行的循环事实上运行了 $1+ \textrm{floor}((N-1)/2)=O(N)$ 次, 但每次调用 `maxHeapify` 时操作的子树的高度都不同. 在变量 `i` 的取值为 $i$ 时, 我们事实上面对的是子结点 $i$ 下的子树, 这个节点的深度为 $d_i$ 时, 应当有:
+
+$$
+2^{d_i}-1 \leq i \leq 2^{d_i+1} -1 \Rightarrow d_i = \textrm{floor}(\log_2 (i+1))
+$$
+
+因此子树的深度应当为 $d - d_i$. 故总的时间复杂度为:
+
+$$
+\begin{aligned}
+T &= \sum_{i=0}^{\textrm{floor}((N-1)/2)} O(d-\textrm{floor}(\log_2 (i+1))) \\
+&= \sum_{i=0}^{\textrm{floor}((N-1)/2)} O(\textrm{floor}(\log_2(N+1))-\textrm{floor}(\log_2 (i+1))) \\
+&= 
+\end{aligned} 
+$$
