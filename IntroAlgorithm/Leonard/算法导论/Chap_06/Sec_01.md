@@ -109,6 +109,10 @@ $$
 \begin{aligned}
 T &= \sum_{i=0}^{\textrm{floor}((N-1)/2)} O(d-\textrm{floor}(\log_2 (i+1))) \\
 &= \sum_{i=0}^{\textrm{floor}((N-1)/2)} O(\textrm{floor}(\log_2(N+1))-\textrm{floor}(\log_2 (i+1))) \\
-&= 
+&= \sum_{i=0}^{N/2} O(\log_2 \frac {N+1} {i+1}) + O(N) \\
+&=O (\int_1^{N/2 +1}\td x \ \log_2 \frac {N+1} x) + O(N)\\
+&=O(N)
 \end{aligned} 
 $$
+
+故把无序列表转换为最大二叉堆时间复杂度为 $O(N)$, 为线性. 
