@@ -41,3 +41,14 @@ class heapSort:
             self.maxHeapify(0)
         return self.body
 ```
+
+我们来分析堆排序的算法复杂度. 由于全部操作均是空间原址的, 因此空间复杂度为 $\Theta(1)$. 我们来分析其时间复杂度. 
+
+1.  28行的建堆过程, 其时间复杂度为 $O(N)$
+2.  29行开始的 `for` 循环, 总的时间复杂度应为
+
+    $$
+    \sum_{i=N-1}^{1} O(\log i) \leq \int_2^N \log x\td x =O(N\log N)
+    $$
+
+从而算法的时间复杂度为 $O(N\log N)$. 

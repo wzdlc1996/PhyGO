@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from math import log2
-
 def left(i: int) -> int:
     return 2 * i + 1
 
