@@ -76,6 +76,18 @@ class youngTableau:
         self.body[-1][-1] = x
         self.floatElement(m - 1, n - 1)
 
+    def exists(self, x):
+        m, n = self.shape
+        i, j = m - 1, 0
+        while i >= 0 and j < n:
+            if self.body[i][j] == x:
+                return True
+            if self.body[i][j] > x:
+                i, j = i - 1, j
+            else:
+                i, j = i, j + 1
+        return False
+
 
     def __str__(self):
         def vec2str(x):
@@ -85,11 +97,31 @@ class youngTableau:
 
 
 if __name__ == "__main__":
-    y = youngTableau(list(range(5)), (3, 3))
-    print(y)
-    y.extractMin()
-    print(y)
-    y.insert(5)
-    print(y)
-    y.insert(0)
-    print(y)
+    import time
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import os
+
+    lx = 500
+    ly = 500
+    times = np.zeros((lx * ly, 2))
+    for m in range(lx):
+        for n in range(ly):
+            #y = youngTableau(list(range(m * n)), (m, n))
+            y = youngTableau([0], (1, 1))
+            y.shape = (m, n)
+            y.body = np.arange(1, m * n + 1).reshape((m, n))
+            y.inf = m * n 
+            st = time.time()
+            y.exists(m - 1)
+            ed = time.time()
+            times[m + n] += np.array([ed - st, 1])
+    times = [x / y for i, (x, y) in enumerate(times) if 0 < i < (lx+ly)/2]
+    inputSize = np.arange(1, len(times) + 1)
+    plt.figure()
+    plt.plot(inputSize, times)
+    plt.title("Time Complexity Scaling of youngTab.exists, worst case")
+    plt.savefig(os.path.realpath(__file__ + "/../") + "/time_complexity_youngTabExists.png")
+    plt.show()
+
+            
