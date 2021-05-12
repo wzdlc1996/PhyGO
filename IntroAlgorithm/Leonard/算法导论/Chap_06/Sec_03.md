@@ -8,3 +8,5 @@
 2.  `maximum(S)`: 返回 $S$ 中有最大 **key** 的元素
 3.  `extractMax(S)`: 去掉并返回 $S$ 中有最大 **key** 的元素
 4.  `increaseKey(S, x, k)`: 将元素 `x` 的 **key** 值增加到 `k`, 其中 我们假设 $k\geq x$.
+
+优先队列的实现可以参考 `../Code/Chap_06/maxPriorityQueue.py`. 值得注意的是, 优先队列中的操作都有着 $O(\log N)$ 的时间复杂度. 
