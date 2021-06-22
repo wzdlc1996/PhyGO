@@ -49,6 +49,8 @@ class binSearchTree:
         self.leftInd = []
         self.rightInd = []
         self.pInd = []
+        self.root = None
+        self.size = 0
     
     def left(self, x):
         return self.leftInd[x]
