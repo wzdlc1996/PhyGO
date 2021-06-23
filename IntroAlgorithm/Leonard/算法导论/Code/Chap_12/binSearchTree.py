@@ -14,7 +14,8 @@ from Base import rand
 
 class binSearchTree:
     def __init__(self):
-        self.body = []
+        self.val = []
+        self.key = []
         self.leftInd = []
         self.rightInd = []
         self.pInd = []
@@ -40,13 +41,46 @@ class binSearchTree:
         return self.size
 
     def __getitem__(self, k):
-        return self.body[k]
+        return self.val[k]
 
     def inorderTreeWalk(self, x):
         if not self.isEmpty(x):
             self.inorderTreeWalk(self.left(x))
-            print(self.body[x])
+            print(self.val[x])
             self.inorderTreeWalk(self.right(x))
+
+    def treeSearch(self, x, key):
+        if x is not None:
+            print(self.key[x], key)
+        if self.isEmpty(x):
+            return None, None
+        elif self.key[x] == key:
+            return self.key[x], self.val[x]
+        else:
+            if self.key[x] > key:
+                return self.treeSearch(self.left(x), key)
+            else:
+                return self.treeSearch(self.right(x), key)
+
+    def treeDive(self, x, method):
+        ch = method(x)
+        while not self.isEmpty(ch):
+            x = ch
+            ch = method(x)
+        return self.key[x], self.val[x]
+
+    
+    def findMin(self):
+        return self.treeDive(self.getRoot(), self.left)
+
+    def findMax(self):
+        return self.treeDive(self.getRoot(), self.right)
+
+    def predecessor(self, x):
+        return self.treeDive(self.left(x), self.right)
+
+    def successor(self, x):
+        return self.treeDive(self.right(x), self.left)
 
     def serInit(self, size):
         """
@@ -56,7 +90,8 @@ class binSearchTree:
         """
         x = list(range(size))
         self.size = size
-        self.body = list(range(5,5 + size))
+        self.key = list(range(size))
+        self.val = list(range(5,5 + size))
         self.leftInd = [None] * size
         self.rightInd = [None] * size
         self.pInd = [None] * size
@@ -89,10 +124,10 @@ class binSearchTree:
         binize(x[rind+1:], self.root, 1)
 
     def __str__(self):
-        return "Tree size: {}\nL list: {}\nR list: {}".format(
+        return "Tree size: {}\nKey list: {}\nVal list: {}".format(
             self.size,
-            str(self.leftInd),
-            str(self.rightInd)
+            str(self.key),
+            str(self.val)
         )
 
 
@@ -100,6 +135,9 @@ if __name__ == "__main__":
     bt = binSearchTree()
     bt.serInit(10)
     print(bt)
-    bt.inorderTreeWalk(5)
+    # bt.inorderTreeWalk(5)
+    # print(bt.treeSearch(bt.getRoot(), 4))
+    # print(bt.findMin())
+    print(bt.successor(5))
 
 

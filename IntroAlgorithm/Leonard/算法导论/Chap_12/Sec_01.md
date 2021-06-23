@@ -45,7 +45,8 @@ $$
 ```python{.line-numbers}
 class binSearchTree:
     def __init__(self):
-        self.body = []
+        self.val = []
+        self.key = []
         self.leftInd = []
         self.rightInd = []
         self.pInd = []
