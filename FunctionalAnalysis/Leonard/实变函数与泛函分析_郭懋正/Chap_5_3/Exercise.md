@@ -14,14 +14,22 @@ $$
 
 ### Solution
 
-$A$ 的构造显然由矩阵 $\alpha_{ij}$ 即可得到, 我们需要证明的就是它把 $l^2(\mathbb{N})$ 的元素同样映为其中的元素. 为此, 我们有:
+$A$ 的构造显然由矩阵 $\alpha_{ij}$ 即可得到, 我们需要证明的就是它把 $l^2(\mathbb{N})$ 的元素同样映为其中的元素. 我们有
 
 $$
-(A x, e_j) = \sum_{i=1}^\infty (A (x,e_i)e_i, e_j) = \sum_{i=1}^\infty (x,e_i)^* \alpha_{ij}. 
+(A x, e_i) = \sum_{j=1}^\infty (A (x,e_j)e_j, e_i) = \sum_{j=1}^\infty (x,e_j)^* \alpha_{ij}. 
 $$
 
-从而有
+由上面的性质, 我们有
 
 $$
-\|A x\|^2 = \sum_j |\sum_{i} (x,e_i)^* \alpha_{ij}|^2\leq \sum_{ij} |(x,e_i)|^2 |\alpha_{ij}|^2 = \sum_j 
+\alpha_{ij} p_i \leq \sum_{i=1}^\infty \alpha_{ij}p_i \leq \beta p_j\Rightarrow \alpha_{ij} \leq \beta p_j/p_i.
 $$
+
+同理有 $\alpha_{ij} \leq \gamma p_i/p_j$. 从而有
+
+$$
+\|A x\|^2 = \sum_i |\sum_{j} (x,e_j)^* \alpha_{ij}|^2\leq \sum_{ij} |(x,e_j)|^2 |\alpha_{ij}|^2 \leq \sum_{ij} |(x,e_j)|^2 \beta \gamma p_i/p_j \times p_j/p_i = \beta\gamma \|x\|^2
+$$
+
+从而我们也有 $\|A\|^2 \leq \beta \gamma$
