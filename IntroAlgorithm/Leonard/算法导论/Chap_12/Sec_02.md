@@ -39,14 +39,22 @@ class binSearchTree:
         while not self.isEmpty(ch):
             x = ch
             ch = method(x)
-        return self.key[x], self.val[x]
+        return x
+
+    def resolv(self, ptr):
+        """
+        return key, val by the ptr
+        """
+        return self.key[ptr], self.val[ptr]
 
     
     def findMin(self):
-        return self.treeDive(self.getRoot(), self.left)
+        x = self.treeDive(self.getRoot(), self.left)
+        return self.resolv(x)
 
     def findMax(self):
-        return self.treeDive(self.getRoot(), self.right)
+        x = self.treeDive(self.getRoot(), self.right)
+        return self.resolv(x)
 ```
 
 这样实现的时间复杂度同样只有树的深度, 为 $O(h)$

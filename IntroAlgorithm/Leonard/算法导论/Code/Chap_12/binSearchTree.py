@@ -49,32 +49,43 @@ class binSearchTree:
             print(self.val[x])
             self.inorderTreeWalk(self.right(x))
 
-    def treeSearch(self, x, key):
-        if x is not None:
-            print(self.key[x], key)
-        if self.isEmpty(x):
+    def resolv(self, ptr):
+        """
+        return key, val by the ptr
+        """
+        if self.isEmpty(ptr):
             return None, None
+        return self.key[ptr], self.val[ptr]
+
+    def treeSearchPtr(self, x, key):
+        if self.isEmpty(x):
+            return None
         elif self.key[x] == key:
-            return self.key[x], self.val[x]
+            return x
         else:
             if self.key[x] > key:
-                return self.treeSearch(self.left(x), key)
+                return self.treeSearchPtr(self.left(x), key)
             else:
-                return self.treeSearch(self.right(x), key)
+                return self.treeSearchPtr(self.right(x), key)
+    
+    def treeSearch(self, x, key):
+        return self.resolv(self.treeSearchPtr(x, key))
 
     def treeDive(self, x, method):
         ch = method(x)
         while not self.isEmpty(ch):
             x = ch
             ch = method(x)
-        return self.key[x], self.val[x]
+        return x
 
     
     def findMin(self):
-        return self.treeDive(self.getRoot(), self.left)
+        x = self.treeDive(self.getRoot(), self.left)
+        return self.resolv(x)
 
     def findMax(self):
-        return self.treeDive(self.getRoot(), self.right)
+        x = self.treeDive(self.getRoot(), self.right)
+        return self.resolv(x)
 
     def predecessor(self, x):
         return self.treeDive(self.left(x), self.right)
@@ -110,14 +121,52 @@ class binSearchTree:
                 x = self.left(x)
             else:
                 x = self.right(x)
-        if y is None:
-            self.root = 0
 
         ptr = self.setValue(-1, key, val, None, None, y)
-        if key < self.key[y]:
-            self.leftInd[y] = ptr
+        if y is None:
+            self.root = 0
         else:
-            self.rightInd[y] = ptr
+            if key < self.key[y]:
+                self.leftInd[y] = ptr
+            else:
+                self.rightInd[y] = ptr
+
+    def transplant(self, des, src):
+        """
+        transplant subtree of src to des
+        """
+        if des == self.root:
+            self.root = src
+        else:
+            par = self.par(des)
+            if des == self.left(par):
+                self.leftInd[par] = src
+            else:
+                self.rightInd[par] = src
+            if not self.isEmpty(src):
+                self.pInd[src] = par
+
+    def delete(self, key):
+        ptr = self.treeSearchPtr(self.root, key)
+        if self.isEmpty(self.left(ptr)):
+            self.transplant(ptr, self.right(ptr))
+        elif self.isEmpty(self.right(ptr)):
+            self.transplant(ptr, self.left(ptr))
+        else:
+            y = self.successor(ptr)
+            if self.par(y) != ptr:
+                self.transplant(y, self.right(y))
+                self.rightInd[y] = self.rightInd[ptr]
+                self.pInd[self.rightInd[y]] = y
+            self.transplant(ptr, y)
+            self.leftInd[y] = self.leftInd[ptr]
+            self.pInd[self.leftInd[y]] = y
+
+        self.key[ptr] = None
+        self.val[ptr] = None
+        self.size -= 1
+
+
                 
 
     def serInit(self, size):
@@ -177,8 +226,10 @@ if __name__ == "__main__":
     # print(bt.treeSearch(bt.getRoot(), 4))
     # print(bt.findMin())
     # print(bt.successor(5))
-    bt.insert((4, 8.5))
+    bt.insert((19, 100))
     print(bt)
+    bt.inorderTreeWalk(bt.getRoot())
+    bt.delete(4)
     bt.inorderTreeWalk(bt.getRoot())
     
 
