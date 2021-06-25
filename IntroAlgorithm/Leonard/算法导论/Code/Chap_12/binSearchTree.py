@@ -82,6 +82,44 @@ class binSearchTree:
     def successor(self, x):
         return self.treeDive(self.right(x), self.left)
 
+    def setValue(self, ptr, *args):
+        k, v, l, r, p = args
+        if ptr in range(self.size):
+            self.rightInd[ptr] = r
+            self.leftInd[ptr] = l
+            self.pInd[ptr] = p
+            self.key[ptr] = k
+            self.val[ptr] = v
+            return ptr
+        else:
+            self.rightInd.append(r)
+            self.leftInd.append(l)
+            self.pInd.append(p)
+            self.key.append(k)
+            self.val.append(v)
+            self.size += 1
+            return self.size - 1
+
+
+    def insert(self, z):
+        key, val = z
+        y = x = self.getRoot()
+        while not self.isEmpty(x):
+            y = x
+            if key < self.key[x]:
+                x = self.left(x)
+            else:
+                x = self.right(x)
+        if y is None:
+            self.root = 0
+
+        ptr = self.setValue(-1, key, val, None, None, y)
+        if key < self.key[y]:
+            self.leftInd[y] = ptr
+        else:
+            self.rightInd[y] = ptr
+                
+
     def serInit(self, size):
         """
         Initialize a binary search tree sequentially, well balanced, for test
@@ -134,10 +172,14 @@ class binSearchTree:
 if __name__ == "__main__":
     bt = binSearchTree()
     bt.serInit(10)
-    print(bt)
+    # print(bt)
     # bt.inorderTreeWalk(5)
     # print(bt.treeSearch(bt.getRoot(), 4))
     # print(bt.findMin())
-    print(bt.successor(5))
+    # print(bt.successor(5))
+    bt.insert((4, 8.5))
+    print(bt)
+    bt.inorderTreeWalk(bt.getRoot())
+    
 
 
