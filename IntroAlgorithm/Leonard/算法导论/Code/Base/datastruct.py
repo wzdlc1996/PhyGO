@@ -1,17 +1,5 @@
 #!/usr/bin/env python
 
-import random
-import sys
-import os
-import time
-
-sys.path.append(os.path.realpath(__file__ + "/../.."))
-"""
-Only works when `pwd` is the location of this file
-#sys.path.append("..")
-"""
-from Base import rand
-
 class binSearchTree:
     def __init__(self):
         self.val = []
@@ -115,7 +103,6 @@ class binSearchTree:
             self.size += 1
             return self.size - 1
 
-
     def insert(self, z):
         key, val = z
         y = x = self.getRoot()
@@ -134,6 +121,7 @@ class binSearchTree:
             right=None, 
             parent=y
         )
+        
         if y is None:
             self.root = 0
         else:
@@ -141,6 +129,8 @@ class binSearchTree:
                 self.leftInd[y] = ptr
             else:
                 self.rightInd[y] = ptr
+        
+        return ptr
 
     def transplant(self, des, src):
         """
@@ -176,72 +166,4 @@ class binSearchTree:
         self.key[ptr] = None
         self.val[ptr] = None
         self.size -= 1
-
-
-                
-
-    def serInit(self, size):
-        """
-        Initialize a binary search tree sequentially, well balanced, for test
-
-        :param size: tree size
-        """
-        x = list(range(size))
-        self.size = size
-        self.key = list(range(size))
-        self.val = list(range(5,5 + size))
-        self.leftInd = [None] * size
-        self.rightInd = [None] * size
-        self.pInd = [None] * size
-        rind = int(size / 2)
-        self.root = x[rind]
-
-        def binize(indlist, rt, mode):
-            """
-            Assign indlist into self with rt as the root, referred by mode as left or right subtree
-
-            :param indlist: index list, subset of x
-            :param rt: root index
-            :param mode: 0/1 valued, 0 means left subtree, 1 means right subtree
-            """
-            sz = len(indlist)
-            if sz == 0:
-                return
-            else:
-                hf = int(sz / 2)
-                r = indlist[hf]
-                self.pInd[r] = rt
-                if mode == 0:
-                    self.leftInd[rt] = r
-                else:
-                    self.rightInd[rt] = r
-                binize(indlist[:hf], r, 0)
-                binize(indlist[hf+1:], r, 1)
-        
-        binize(x[:rind], self.root, 0)
-        binize(x[rind+1:], self.root, 1)
-
-    def __str__(self):
-        return "Tree size: {}\nKey list: {}\nVal list: {}".format(
-            self.size,
-            str(self.key),
-            str(self.val)
-        )
-
-
-if __name__ == "__main__":
-    bt = binSearchTree()
-    bt.serInit(10)
-    # print(bt)
-    # bt.inorderTreeWalk(5)
-    # print(bt.treeSearch(bt.getRoot(), 4))
-    # print(bt.findMin())
-    # print(bt.successor(5))
-    bt.insert((19, 100))
-    print(bt)
-    bt.inorderTreeWalk(bt.getRoot())
-    bt.delete(4)
-    bt.inorderTreeWalk(bt.getRoot())
-    
-
-
+        return ptr
