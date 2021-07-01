@@ -48,6 +48,7 @@ class bhTree(binSearchTree):
 
         # Modify the child of p into y
         if x == self.root:
+            # discuss root separately, since p(root) = None
             self.root = y
         elif x == self.left(p):
             self.leftInd[p] = y
