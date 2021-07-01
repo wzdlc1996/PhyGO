@@ -114,7 +114,7 @@ class binSearchTree:
                 x = self.right(x)
 
         ptr = self.setValue(
-            -1, 
+            ptr=-1, 
             key=key, 
             value=val, 
             left=None, 
@@ -129,7 +129,7 @@ class binSearchTree:
                 self.leftInd[y] = ptr
             else:
                 self.rightInd[y] = ptr
-        
+
         return ptr
 
     def transplant(self, des, src):

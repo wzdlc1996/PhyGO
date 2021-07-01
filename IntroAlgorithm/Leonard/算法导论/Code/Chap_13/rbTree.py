@@ -18,16 +18,17 @@ class bhTree(binSearchTree):
         super().__init__()
         self.colors = []
 
-    def setValue(self, **kwargs):
-        ptr = super().setValue(**kwargs)
+    def setValue(self, ptr, **kwargs):
+        ptr = super().setValue(ptr=ptr, **kwargs)
         if "color" not in kwargs:
             col = 1
         else:
             col = kwargs["color"]
-        if ptr < self.size:
+        if len(self.colors) == self.size:
             self.colors[ptr] = col
         else:
             self.colors.append(col)
+        return ptr
 
     def insert(self, z):
         ptr = super().insert(z)
@@ -36,5 +37,38 @@ class bhTree(binSearchTree):
 
     def delete(self, key):
         return super().delete(key)
+
+    def rightRotate(self, x):
+        if self.isEmpty(self.left(x)):
+            print("Empty left child, leave tree unchanged")
+            return
+        
+        y = self.left(x)
+        p = self.par(x)
+
+        # Modify the child of p into y
+        if x == self.root:
+            self.root = y
+        elif x == self.left(p):
+            self.leftInd[p] = y
+        else:
+            self.rightInd[p] = y
+        self.pInd[y] = p
+        self.pInd[x] = y
+
+        # Modify subtree belonging
+        self.rightInd[y], self.leftInd[x] = x, self.rightInd[y]
+
+if __name__ == "__main__":
+    testT = bhTree()
+    testT.insert((1, None))
+    testT.insert((0, None))
+    testT.insert((2, None))
+    print(testT.left(testT.root), testT.right(testT.root))
+    testT.rightRotate(testT.root)
+    print(testT.left(testT.root), testT.right(testT.root))
+
+
+        
         
 
