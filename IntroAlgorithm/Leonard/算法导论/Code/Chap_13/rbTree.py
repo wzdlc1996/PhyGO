@@ -59,6 +59,28 @@ class bhTree(binSearchTree):
 
         # Modify subtree belonging
         self.rightInd[y], self.leftInd[x] = x, self.rightInd[y]
+    
+    def leftRotate(self, x):
+        if self.isEmpty(self.left(x)):
+            print("Empty left child, leave tree unchanged")
+            return
+        
+        y = self.right(x)
+        par = self.par(x)
+        
+        # Modify the child of p into y
+        if x == self.root:
+            # discuss root separately
+            self.root = y
+        elif x == self.left(p):
+            self.leftInd[p] = y
+        else:
+            self.rightInd[p] = y
+        self.pInd[y] = p
+        self.pInd[x] = y
+
+        # Modify subtree belonging
+        self.leftInd[y], self.rightInd[x] = x, self.leftInd[y]
 
 if __name__ == "__main__":
     testT = bhTree()
