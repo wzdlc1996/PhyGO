@@ -66,7 +66,7 @@ class bhTree(binSearchTree):
             return
         
         y = self.right(x)
-        par = self.par(x)
+        p = self.par(x)
         
         # Modify the child of p into y
         if x == self.root:
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     testT.insert((0, None))
     testT.insert((2, None))
     print(testT.left(testT.root), testT.right(testT.root))
-    testT.rightRotate(testT.root)
+    testT.leftRotate(testT.root)
     print(testT.left(testT.root), testT.right(testT.root))
 
 

@@ -27,4 +27,38 @@
 
 (图片引用自博客 [@jianshujoker](https://www.jianshu.com/p/ab90c2ec07e4))
 
-从而我们不难给出实现这些操作的伪代码, 注意这种局部操作只修改了存储节点关系的列表而不调整节点的值. 
+从而我们不难给出实现这些操作的代码, 注意这种局部操作只修改了存储节点关系的列表而不调整节点的值. 
+
+```python{.line-numbers}
+class bhTree(binSearchTree):
+    # Other methods
+    def rightRotate(self, x):
+        if self.isEmpty(self.left(x)):
+            print("Empty left child, leave tree unchanged")
+            return
+        
+        y = self.left(x)
+        p = self.par(x)
+
+        # Modify the child of p into y
+        if x == self.root:
+            # discuss root separately, since p(root) = None
+            self.root = y
+        elif x == self.left(p):
+            self.leftInd[p] = y
+        else:
+            self.rightInd[p] = y
+        self.pInd[y] = p
+        self.pInd[x] = y
+
+        # Modify subtree belonging
+        self.rightInd[y], self.leftInd[x] = x, self.rightInd[y]
+```
+
+## 插入节点
+
+我们可以在 $O(\log n)$ 的时间内完成向一个含有 $n$ 个节点的红黑树中插入一个新的节点.
+
+回忆在二叉搜索树中的插入操作, 我们通过按照搜索树进行搜索找到一个合适的叶节点位置, 然后将输入元素插入树中. 红黑树的插入操作将额外将该节点置红色, 然后调用一个修复红黑树性质的子程序来确保红黑树性质是保持的. 
+
+_为什么不把新节点置黑色?_ : 如果将其置为黑色, 那么从其父节点开始向叶节点的不同简单路径上会拥有不同数量的黑色节点. 这将会破坏红黑树的性质5: "对每个节点, 从该节点到其所有后代叶节点的简单路径上, 均包含相同数目的黑色节点. ", 使得性质修复更加困难. 而如果置红色, 则性质5不会破坏而仅破坏性质4, 可以相对容易地进行修复(因为不需要增加或减少黑节点数量.)
