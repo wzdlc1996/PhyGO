@@ -11,7 +11,7 @@
 我们本次在 `python` 中如此实现红黑树, 它直接继承自我们在 Chapter 12 中实现的二叉搜索树. 我们额外添加一个标记颜色的布尔列表, 假对应红而真对应黑, 并重写涉及动态集合操作的方法, 来添加完成对 `color` 的操作. 
 
 ```python{.line-numbers}
-class bhTree(binSearchTree):
+class rbTree(binSearchTree):
     def __init__(self):
         super().__init__()
         self.colors = []
@@ -27,14 +27,8 @@ class bhTree(binSearchTree):
         else:
             self.colors.append(col)
 
-    def insert(self, z):
-        return super().insert(z)
-
-    def delete(self, key):
-        return super().delete(key)
-
     def isBlack(self, x):
-        return isEmpty(x) or x == self.root or self.colors[x]
+        return self.isEmpty(x) or x == self.root or self.colors[x]
 ```
 
 一棵红黑树应当满足如下的性质:

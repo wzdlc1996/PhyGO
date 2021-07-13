@@ -82,26 +82,26 @@ class binSearchTree:
         return self.treeDive(self.right(x), self.left)
 
     def setValue(self, ptr, **kwargs):
-        k = kwargs["key"]
-        v = kwargs["value"]
-        l = kwargs["left"]
-        r = kwargs["right"]
-        p = kwargs["parent"]
-        if ptr in range(self.size):
+        if ptr not in range(self.size):
+            self.rightInd.append(kwargs["right"])
+            self.leftInd.append(kwargs["left"])
+            self.pInd.append(kwargs["parent"])
+            self.key.append(kwargs["key"])
+            self.val.append(kwargs["value"])
+            self.size += 1
+            return self.size - 1
+        else:
+            k = kwargs["key"] if "key" in kwargs else self.key[ptr]
+            v = kwargs["value"] if "value" in kwargs else self.val[ptr]
+            l = kwargs["left"] if "left" in kwargs else self.leftInd[ptr]
+            r = kwargs["right"] if "right" in kwargs else self.rightInd[ptr]
+            p = kwargs["parent"] if "parent" in kwargs else self.pInd[ptr]
             self.rightInd[ptr] = r
             self.leftInd[ptr] = l
             self.pInd[ptr] = p
             self.key[ptr] = k
             self.val[ptr] = v
             return ptr
-        else:
-            self.rightInd.append(r)
-            self.leftInd.append(l)
-            self.pInd.append(p)
-            self.key.append(k)
-            self.val.append(v)
-            self.size += 1
-            return self.size - 1
 
     def insert(self, z):
         key, val = z

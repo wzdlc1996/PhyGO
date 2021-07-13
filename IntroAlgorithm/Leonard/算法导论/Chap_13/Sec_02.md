@@ -62,3 +62,55 @@ class bhTree(binSearchTree):
 回忆在二叉搜索树中的插入操作, 我们通过按照搜索树进行搜索找到一个合适的叶节点位置, 然后将输入元素插入树中. 红黑树的插入操作将额外将该节点置红色, 然后调用一个修复红黑树性质的子程序来确保红黑树性质是保持的. 
 
 _为什么不把新节点置黑色?_ : 如果将其置为黑色, 那么从其父节点开始向叶节点的不同简单路径上会拥有不同数量的黑色节点. 这将会破坏红黑树的性质5: "对每个节点, 从该节点到其所有后代叶节点的简单路径上, 均包含相同数目的黑色节点. ", 使得性质修复更加困难. 而如果置红色, 则性质5不会破坏而仅破坏性质4, 可以相对容易地进行修复(因为不需要增加或减少黑节点数量.)
+
+我们接下来开始分析红黑树的插入操作. 注意我们使用原本的二叉搜索树的插入操作, 因此插入节点的位置总是叶子(在红黑树中, 应当是一个叶子的父节点, 因为我们为每个原始的"叶节点"加入了两个空的, 黑色的孩子). 插入节点被置为红色. 
+
+这种插入操作将会破坏红黑树的性质 2. 根节点是黑色的, 和 4. 每个红节点的两个孩子都是黑色的. 我们来分析如下的实现:
+
+```python{.line-numbers}
+class rbTree(binSearchTree):
+    def insert_fix(self, ptr):
+        # Fix the insert operation
+        def isLeftChild(x):
+            return x == self.left(self.par(x))
+        def setBlack(x):
+            self.color[x] = True
+        def setRed(x):
+            self.color[x] = False
+
+        while not self.isBlack(self.pInd[ptr]):
+            if isLeftChild(self.par(ptr)):
+                y = self.right(self.par(self.par(ptr)))
+                if not self.isBlack(y):
+                    setBlack(self.par(ptr))
+                    setBlack(y)
+                    setRed(self.par(y))
+                    ptr = self.par(self.par(ptr))
+                elif not isLeftChild(ptr):
+                    ptr = self.par(ptr)
+                    self.leftRotate(ptr)
+                setBlack(self.par(ptr))
+                setRed(self.par(self.par(ptr)))
+                self.rightRotate(self.par(self.par(ptr)))
+            else:
+                y = self.left(self.par(self.par(ptr)))
+                if not self.isBlack(y):
+                    setBlack(self.par(ptr))
+                    setBlack(y)
+                    setRed(self.par(y))
+                    ptr = self.par(self.par(ptr))
+                elif not isLeftChild(ptr):
+                    ptr = self.par(ptr)
+                    self.leftRotate(ptr)
+                setBlack(self.par(ptr))
+                setRed(self.par(self.par(ptr)))
+                self.rightRotate(self.par(self.par(ptr)))
+        
+        setBlack(self.root)
+
+    def insert(self, z):
+        ptr = super().insert(z)
+        self.setValue(ptr, color=False)
+        self.insert_fix(ptr)
+        return ptr
+```
