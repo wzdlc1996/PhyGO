@@ -92,5 +92,11 @@ $$
         \textrm{int}(x) + \textrm{int}(y) = \textrm{int} (x + y +2^w)
         $$
 
+    这是因为, 对于同样的2进制序列, 解读为 `int` 和 `uint` 的关系正是
+
+    $$
+    \textrm{uintFromBinary}(x) = \textrm{intFromBinary}(x) + x_{w-1} * 2^w
+    $$
+
 
 
