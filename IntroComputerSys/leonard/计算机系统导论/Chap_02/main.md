@@ -98,5 +98,30 @@ $$
     \textrm{uintFromBinary}(x) = \textrm{intFromBinary}(x) + x_{w-1} * 2^w
     $$
 
+### 乘法
 
+两个字长为 $w$ 的数相乘其结果最多为 $2w$ 位. 无符号整数的乘法运算将会舍弃掉高位做出截断. 因而:
 
+$$
+\textrm{uint}(x) \times \textrm{uint}(y) = \textrm{uint}(x \times y \mod 2^w)
+$$
+
+对于有符号整数, 其位级运算的规则是一致的, 我们可以检查如下:
+
+$$
+\begin{aligned}
+V(b^1) \times_{uint} V(b^2) &= \Big(V(b^1) + b^1_{w-1} 2^w\Big)_{as~uint}\times_{uint} \Big(V(b^2) + b^2_{w-1} 2^w\Big)_{as~uint} \\
+&= b_{w-1}^1 b_{w-2}^2 2^{2w} + b_{w-1}^2 2^w V(b^1) + b_{w-1}^1 2^w V(b^2) + V(b^1)V(b^2) \mod 2^w \\
+&=V(b^1)V(b^2) \mod 2^w
+\end{aligned}
+$$
+
+同样的, 溢出问题这时也发生了, 反应在我们将有符号整数的最高位解释为符号位, 使得mod运算这时的值域不被限制在 $[0, 2^w)$ 中, 而是有时的正整数乘法给出负的结果. 如:
+
+对于 `int32`, 存在
+
+```C
+// which is 0b10100000000000000000000000000000
+// while 10 is 0b00000000000000000000000000001010
+10 << 29 == -1610612736
+```
