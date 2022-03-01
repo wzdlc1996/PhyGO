@@ -34,3 +34,17 @@ CISO 的知识集合:
 CISSP 认证: 安全领域高质量的国际认证, 至少三年安全工作经验, 在十个不同的安全知识领域有深入知识. 
 
 教材: 中译本 密码编码学与网络安全-原理与实践 (7th-ed)
+
+# 信息安全概述
+
+## 信息安全的目标--CIA
+
+1.  机密性: confidentiality
+2.  完整性: integrity
+3.  可用性: availability
+4.  抗否认性: non-repudiation
+
+**Computer Security**: 普遍的名称, 保护data和针对thwart hackers
+**Network Security**: 保护数据传输
+**Internet Security**: 保护数据传输 (在network之间)
+
