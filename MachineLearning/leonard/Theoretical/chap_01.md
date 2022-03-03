@@ -257,6 +257,39 @@ $$
 \sup_\mathcal{P} \mathbb{E}\Big(R[\mathcal{A}(D_n)] \Big) -R^* \geq 1/2
 $$
 
+该定理的意义在于: 找不到一个算法让所有分布都能获得最好表现 (excess risk 为0)
+
+证明: 核心在于构造一个满足不等式的分布 $\mathcal{P}$
+
+考虑 $x \in X = \{1,\cdots,k\}$ ($k\gg n$) 是一个离散的, 均匀分布的变量. $p_i = \mathbb{P}(x = i) = 1/k$. 而数据集服从分布 $(x, y) \in X \otimes \{0, 1\}$ 被一个向量 $b = (b_1,\cdots, b_k), b_i \in\{0, 1\}$ 参数化:
+
+$$
+y = b_x
+$$
+
+此时, 最优的分类器带来的risk应为 $R^* = 0$. (因为x, y之间存在一个一一对应关系).
+
+令 $S_n(b) = \mathbb{E} (R[\hat f_n])$, 我们来考虑 $\sup_b S_n(b)$, 找到这个最大值界的技巧: 随机化 $b$ 从而给出 $\sup_b S(b) \geq \mathbb{E}_b S(b)$ :
+
+$$
+\begin{aligned}
+\mathbb{E}_b S(b) &= \mathbb{P}_{b\sim B}(\hat f_n(X) \neq B_X) \\
+&= \mathbb{E}_{x_1,\cdots,x_n}\Big(\mathbb{P}(\hat f_n(x) \neq B_x|x_1,\cdots, x_n)\Big) \\
+&\geq \mathbb{E}\Big(\mathbb{P}(\hat f_n(x) \notin B_x \wedge x \neq \{x_1,\cdots,x_n\}|x_1,\cdots, x_n)\Big) \\
+&= \mathbb{E}\Big(\frac 1 2 \mathbb{P}(x\notin \{x_1,\cdots,x_n\}|x_1,\cdots,x_n)\Big) \\
+&= \frac 1 2 \mathbb{P}(x\notin \{x_1,\cdots,x_n\})
+\end{aligned}
+$$
+
+其中由于 $\mathbb{P}(\hat f_n(x) \neq b_x|x\notin\{x_1,\cdots,x_n\}, x_1,\cdots,x_n) = 1/2$, 这是因为 label 均匀分布在0,1之间, 而数据 $x$ 没有被观察到过. 我们要求 $b$ 的各个分量服从 Bernoulli 分布. 进而
+
+$$
+\frac 1 2\mathbb{P}(x\notin \{x_1,\cdots,x_n\}) = \frac 1 2 \mathbb{E}_x (\mathbb{P}(x_1 \neq x, x_2\neq x, \cdots, x_n\neq x| x)) \\
+= \frac 1 2 \mathbb{E}_x (\prod_{i=1}^n\mathbb{P}(x_i \neq x| x)) = \frac 1 2 (1-1/k)^n
+$$
+
+从而对于给定 $n$, 我们令 $k\rightarrow \infty$ 即可.
+
 推广:
 
 对任意的递降序列 $a_n$ 收敛到0, 满足 $a_0 \leq 1/ 16$, 那么对任意一个algorithm, 存在一个分布使得
