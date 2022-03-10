@@ -55,3 +55,9 @@
 
 1.  无条件安全: 无论破译者有多少密文都安全(one-time password)
 2.  计算上安全: 破译成本超过信息本身价值, 时间消耗超过信息有效期
+
+# Reference
+
+1.  csrc.nist.gov/encryption/aes
+2.  rsasecurity.com/rsalabs/rc6
+3.  williamstallings.com/Crypto3e.html
