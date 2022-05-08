@@ -19,3 +19,18 @@ $$
 $$
 \beta_i^m = \frac {\textrm{cov} (R_i, R_f)} {\sigma^2(R_m)}
 $$
+
+## Fama-French 三因子模型
+
+Fama 和 French 在1993年指出可以通过一个三因子模型来解释股票回报率. 数学的, 它指出股票相对无风险资产的超额收益线性依赖于三个因素: 市场组合回报, 市值因子, 和账面市值比因子. 金融里边, 我们也称这些线性依赖关系为资产对这些因子的暴露:
+
+$$
+\mathbb{E}(R_{i,t}) - R_{f,t} = \beta_i (\mathbb{E}(R_{M, t}) - R_{f,t})+s_i \mathbb{E}(SMB_t) + h_i \mathbb{E}(HML_t)
+$$
+
+其中:
+1.  $R_{i,t}$ 为t时间的资产收益率
+2.  $R_{M,t}$ 为t时间的市场组合收益率
+3.  $R_{f,t}$ 为t时间的无风险资产收益率
+4.  $SMB$ 为市值因子的模拟组合收益率(small-minus-big)
+5.  $HML$ 为账面市值比(book-to-market) 的模拟组合收益率(high-minus-low)
